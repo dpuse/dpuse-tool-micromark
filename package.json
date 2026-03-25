@@ -1,6 +1,6 @@
 {
     "name": "@dpuse/dpuse-tool-micromark",
-    "version": "0.1.994",
+    "version": "0.1.995",
     "description": "A library that wraps the Micromark markdown parser and Speed Highlight code highlighter.",
     "license": "MIT",
     "private": false,
@@ -53,18 +53,19 @@
         "rollup-plugin-visualizer": "^7.0.1",
         "typescript": "^5.9.3",
         "vite": "^8.0.2",
-        "vite-plugin-dts": "^4.5.4"
+        "vite-plugin-dts": "^4.5.4",
+        "vitest": "^4.1.1"
     },
     "scripts": {
-        "audit": "node -e \"import('@dpuse/dpuse-development').then(m => m.auditDependencies())\"",
+        "audit": "op run --env-file=.env -- node -e \"import('@dpuse/dpuse-development').then(m => m.auditDependencies())\"",
         "build": "node -e \"import('@dpuse/dpuse-development').then(m => m.buildProject())\"",
         "check": "node -e \"import('@dpuse/dpuse-development').then(m => m.checkDependencies())\"",
-        "document": "node -e \"import('@dpuse/dpuse-development').then(m => m.documentDependencies(['CC0-1.0','MIT']))\"",
+        "document": "op run --env-file=.env -- node -e \"import('@dpuse/dpuse-development').then(m => m.documentDependencies(['Apache-2.0','CC0-1.0','MIT']))\"",
         "format": "node -e \"import('@dpuse/dpuse-development').then(m => m.formatCode())\"",
         "lint": "node -e \"import('@dpuse/dpuse-development').then(m => m.lintCode())\"",
-        "release": "node -e \"import('@dpuse/dpuse-development').then(m => m.releaseProject())\"",
+        "release": "op run --env-file=.env -- node -e \"import('@dpuse/dpuse-development').then(m => m.releaseProject())\"",
         "sync": "node -e \"import('@dpuse/dpuse-development').then(m => m.syncProjectWithGitHub())\"",
         "test": "node -e \"import('@dpuse/dpuse-development').then(m => m.testProject())\"",
-        "update": "node -e \"import('@dpuse/dpuse-development').then(m => m.updateDPUseDependencies(['development']))\""
+        "update": "node -e \"import('@dpuse/dpuse-development').then(m => m.updateDPUseDependencies(['development', 'eslint', 'shared']))\""
     }
 }

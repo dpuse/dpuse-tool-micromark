@@ -46,12 +46,11 @@ The OWASP Dependency Check Report identifies known vulnerabilities in project de
 The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks.
 
 <!-- DEPENDENCY_LICENSES_START -->
-
-| Name                          |  Type   | Installed | Latest | Latest Modified          |
-| :---------------------------- | :-----: | :-------: | :----: | :----------------------- |
-| @speed-highlight/core         | CC0-1.0 |  1.2.12   | 1.2.12 | 2025-11-03T17:41:39.642Z |
-| micromark                     |   MIT   |   4.0.2   | 4.0.2  | 2025-02-27T14:04:03.783Z |
-| micromark-extension-gfm-table |   MIT   |   2.1.1   | 2.1.1  | 2025-01-20T12:24:29.697Z |
+|Name|Type|Installed|Latest|Latest Released|Deps|Document|
+|:-|:-|:-:|:-:|:-|-:|:-|
+|@speed-highlight/core|CC0-1.0|1.2.15|1.2.15|this month: 2026-03-18|0|[LICENSE](https://raw.githubusercontent.com/speed-highlight/core/main/LICENSE)|
+|micromark|MIT|4.0.2|4.0.2|12 months ago: 2025-02-27 ⚠️|17|[license](https://raw.githubusercontent.com/micromark/micromark/main/license)|
+|micromark-extension-gfm-table|MIT|2.1.1|2.1.1|14 months ago: 2025-01-20❗|5|[license](https://raw.githubusercontent.com/micromark/micromark-extension-gfm-table/main/license)|
 
 <!-- DEPENDENCY_LICENSES_END -->
 
