@@ -1,10 +1,12 @@
 # Data Positioning Micromark Tool
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=data-positioning_datapos-tool-micromark&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=data-positioning_datapos-tool-micromark)
-<span><!-- OWASP_BADGES_START -->[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://data-positioning.github.io/datapos-tool-micromark/dependency-check-reports/dependency-check-report.html)<!-- OWASP_BADGES_END --></span>
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11502/badge)](https://www.bestpractices.dev/projects/11502)
-[![npm version](https://img.shields.io/npm/v/@datapos/datapos-tool-micromark)](https://www.npmjs.com/package/@datapos/datapos-tool-micromark)
+[![npm version](https://img.shields.io/npm/v/@dpuse/dpuse-tool-micromark)](https://www.npmjs.com/package/@dpuse/dpuse-tool-micromark)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dpuse-tool-micromark&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dpuse-tool-micromark)
+<span><!-- OWASP_BADGES_START -->
+[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://dpuse.github.io/dpuse-tool-micromark/dependency-check-reports/dependency-check-report.html)
+<!-- OWASP_BADGES_END --></span>
 
 A library that wraps the Micromark markdown parser and Speed Highlight code highlighter, improving browser memory efficiency by sharing single instances of these tools across all presenters and loading optional modules on demand.
 
@@ -26,8 +28,8 @@ There's no need to install this library manually. Once released, it is uploaded 
 If you wish to fork or create your own copy of the library:
 
 ```bash
-git clone https://github.com/data-positioning/datapos-tool-micromark.git
-cd datapos-tool-micromark
+git clone https://github.com/dpuse/dpuse-tool-micromark.git
+cd dpuse-tool-micromark
 npm install
 ```
 
@@ -37,18 +39,20 @@ npm install
 
 The OWASP Dependency Check Report identifies known vulnerabilities in project dependencies. It is generated automatically on each release using the npm package `owasp-dependency-check`. We also rely on GitHub Dependabot to continuously check for vulnerabilities across all dependencies.
 
-[View the OWASP Dependency Check Report](https://data-positioning.github.io/datapos-tool-micromark/dependency-check-reports/dependency-check-report.html)
+[View the OWASP Dependency Check Report](https://dpuse.github.io/dpuse-tool-micromark/dependency-check-reports/dependency-check-report.html)
 
 ### Dependency Licenses
 
 The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks.
 
 <!-- DEPENDENCY_LICENSES_START -->
+
 | Name                          |  Type   | Installed | Latest | Latest Modified          |
 | :---------------------------- | :-----: | :-------: | :----: | :----------------------- |
 | @speed-highlight/core         | CC0-1.0 |  1.2.12   | 1.2.12 | 2025-11-03T17:41:39.642Z |
 | micromark                     |   MIT   |   4.0.2   | 4.0.2  | 2025-02-27T14:04:03.783Z |
 | micromark-extension-gfm-table |   MIT   |   2.1.1   | 2.1.1  | 2025-01-20T12:24:29.697Z |
+
 <!-- DEPENDENCY_LICENSES_END -->
 
 **Installed dependencies are kept up-to-date with latest releases.**
@@ -57,7 +61,7 @@ The following table lists top-level production and peer dependencies. All these 
 
 The Bundle Analysis Report provides a detailed breakdown of the bundle's composition and module sizes, helping to identify which modules contribute most to the final build. It is generated automatically on each release using the npm package `rollup-plugin-visualizer`.
 
-[View the Bundle Analysis Report](https://data-positioning.github.io/datapos-tool-micromark/stats/index.html)
+[View the Bundle Analysis Report](https://dpuse.github.io/dpuse-tool-micromark/stats/index.html)
 
 ## Repository Management Commands
 

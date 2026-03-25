@@ -95,7 +95,7 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
             codeFencedFenceInfo(this: CompileContext, token: Token): undefined /* The language identifier (json, javascript...). */ {
                 if (currentBlockData !== undefined) currentBlockData.lang = this.sliceSerialize(token);
             },
-            codeFencedFenceMeta(this: CompileContext, token: Token): undefined /* The metadata after the language identifier (datapos-visual). */ {
+            codeFencedFenceMeta(this: CompileContext, token: Token): undefined /* The metadata after the language identifier (dpuse-visual). */ {
                 if (currentBlockData !== undefined) currentBlockData.meta = this.sliceSerialize(token);
             },
             codeFlowValue(this: CompileContext, token: Token): undefined /* Each line/chunk of actual code content. */ {
@@ -116,12 +116,12 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
                 const metaAttr = blockData.meta || '';
                 let html = '';
                 if (language === 'json') {
-                    if (metaAttr === 'datapos-visual') {
+                    if (metaAttr === 'dpuse-visual') {
                         html = `<div class="${metaAttr}" data-options="${encodeURIComponent(rawContent)}"></div>`;
-                    } else if (metaAttr === 'datapos-formula') {
+                    } else if (metaAttr === 'dpuse-formula') {
                         const v1 = JSON.parse(rawContent);
                         html = generateMathML(v1.expression);
-                    } else if (metaAttr === 'datapos-highcharts') {
+                    } else if (metaAttr === 'dpuse-highcharts') {
                         html = `<div class="${metaAttr}" data-options="${encodeURIComponent(rawContent)}"></div>`;
                     }
                 } else {
