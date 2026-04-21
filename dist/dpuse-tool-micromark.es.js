@@ -1002,6 +1002,7 @@ function xe(e) {
 	return e !== 96 || this.events[this.events.length - 1][1].type === "characterEscape";
 }
 function Se(e, t, n) {
+	this;
 	let r = 0, i, o;
 	return s;
 	function s(t) {
@@ -2442,16 +2443,14 @@ var nn = {
 	allowDangerousProtocol: !1,
 	extensions: [],
 	htmlExtensions: [un()]
-}, an = !1, $ = void 0, on = void 0, sn = void 0, cn = class {
+}, an = !1, $, on, sn, cn = class {
 	async highlight(e, t) {
 		if (typeof document > "u") return;
 		let { highlightElement: n } = await pn(t);
-		e.querySelectorAll("div[class^=\"shj-lang-\"]").forEach((e) => {
-			(/shj-lang-([^\s]+)/.exec(e.className) || [])[1] === "javascript" && (n(e, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(e.style, {
-				fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
-				fontSize: "14px"
-			}));
-		});
+		for (let t of e.querySelectorAll("div[class^=\"shj-lang-\"]")) (/shj-lang-([^\s]+)/.exec(t.className) ?? [])[1] === "javascript" && (await n(t, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(t.style, {
+			fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
+			fontSize: "14px"
+		}));
 	}
 	async render(e, t) {
 		return (t?.tables ?? !1) && (!an && !$ && ($ = (async () => {
@@ -2466,7 +2465,7 @@ var nn = {
 function ln(e) {
 	if (typeof document > "u") return;
 	let t = e === "dark" ? "theme-dark" : "theme-light";
-	document.querySelectorAll("style[data-dynamic]").forEach((e) => e.disabled = e.id !== t);
+	for (let e of document.querySelectorAll("style[data-dynamic]")) e.disabled = e.id !== t;
 }
 function un() {
 	let e;
@@ -2505,7 +2504,19 @@ function un() {
 				};
 				this.resume();
 				let n = t.codeContent.join("\n"), r = t.lang || "plain", i = t.meta || "", a = "";
-				r === "json" ? i === "dpuse-visual" ? a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>` : i === "dpuse-formula" ? a = $t(JSON.parse(n).expression) : i === "dpuse-highcharts" && (a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`) : a = `<div class="shj-lang-${r.replaceAll(/[^a-z0-9_-]/gi, "")}">${dn(n)}</div>`, this.raw(a), e = void 0;
+				if (r === "json") switch (i) {
+					case "dpuse-visual":
+						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
+						break;
+					case "dpuse-formula":
+						a = $t(JSON.parse(n).expression);
+						break;
+					case "dpuse-highcharts":
+						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
+						break;
+				}
+				else a = `<div class="shj-lang-${r.replaceAll(/[^a-z0-9_-]/gi, "")}">${dn(n)}</div>`;
+				this.raw(a), e = void 0;
 			}
 		}
 	};
@@ -2515,8 +2526,8 @@ function dn(e) {
 }
 function fn(e, t) {
 	if (typeof document > "u") return;
-	let n = document.getElementById(t);
-	n ?? (n = document.createElement("style"), n.id = t, n.dataset.dynamic = "true", document.head.appendChild(n)), n.innerHTML = e, n.disabled = !0;
+	let n = document.querySelector(`#${t}`);
+	n ?? (n = document.createElement("style"), n.id = t, n.dataset.dynamic = "true", document.head.append(n)), n.innerHTML = e, n.disabled = !0;
 }
 async function pn(e) {
 	return on || (sn ??= (async () => {

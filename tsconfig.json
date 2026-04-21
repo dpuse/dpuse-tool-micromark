@@ -1,13 +1,12 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
         "declaration": true,
         "esModuleInterop": true,
         "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
         "isolatedModules": true,
-        "lib": ["DOM", "ESNext"],
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "module": "ESNext",
         "moduleDetection": "force",
         "moduleResolution": "bundler",
@@ -19,8 +18,8 @@
         "noUnusedParameters": false,
         "outDir": "dist",
         "paths": {
-            "~/*": ["*"],
-            "@/*": ["src/*"]
+            "~/*": ["./*"],
+            "@/*": ["./src/*"]
         },
         "resolveJsonModule": true,
         "skipLibCheck": true,

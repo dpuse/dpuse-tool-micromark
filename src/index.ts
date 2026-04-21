@@ -13,7 +13,9 @@ import type * as SpeedHighlight from '@speed-highlight/core';
 import { generateMathML } from '@/formula';
 
 // Types/Interfaces
-type RenderOptions = { tables?: boolean };
+export interface RenderOptions {
+    tables?: boolean;
+}
 
 // Constants
 const ESCAPE_MAP: Record<'&' | '<' | '>' | '"' | "'", string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
@@ -25,29 +27,29 @@ const micromarkOptions: Options = {
     extensions: [],
     htmlExtensions: [createPresenterCodeBlockHtmlExtension()]
 };
-let tableExtensionIsLoaded: boolean = false;
-let tableExtensionPromise: Promise<void> | undefined = undefined;
-let speedHighlight: typeof SpeedHighlight | undefined = undefined;
-let speedHighlightPromise: Promise<typeof SpeedHighlight> | undefined = undefined;
+let tableExtensionIsLoaded = false;
+let tableExtensionPromise: Promise<void> | undefined;
+let speedHighlight: typeof SpeedHighlight | undefined;
+let speedHighlightPromise: Promise<typeof SpeedHighlight> | undefined;
 
 // Classes - Micromark tool.
-class MicromarkTool {
+export class MicromarkTool {
     // Operations - Highligh previously rendered markdown.
     async highlight(renderTo: HTMLElement, colorModeId: string): Promise<void> {
         if (typeof document === 'undefined') return;
 
         const { highlightElement } = await loadSpeedHighlight(colorModeId);
 
-        renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]').forEach((element) => {
-            const lang = (/shj-lang-([^\s]+)/.exec(element.className) || [])[1];
+        for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
+            const lang = (/shj-lang-([^\s]+)/.exec((element as HTMLElement).className) ?? [])[1];
             if (lang === 'javascript') {
-                highlightElement(element, 'js', 'multiline', { hideLineNumbers: true });
-                Object.assign(element.style, {
+                await highlightElement(element, 'js', 'multiline', { hideLineNumbers: true });
+                Object.assign((element as HTMLElement).style, {
                     fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
                     fontSize: '14px'
                 });
             }
-        });
+        }
     }
 
     // Operations - Render markdown.
@@ -78,7 +80,7 @@ function applyColorMode(colorModeId: string): void {
     if (typeof document === 'undefined') return;
 
     const styleId = colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
-    document.querySelectorAll<HTMLStyleElement>('style[data-dynamic]').forEach((style) => (style.disabled = style.id !== styleId));
+    for (const style of document.querySelectorAll<HTMLStyleElement>('style[data-dynamic]')) style.disabled = style.id !== styleId;
 }
 
 // Helpers - Create presenter code block.
@@ -90,8 +92,12 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
                 this.buffer();
                 currentBlockData = { codeContent: [], lang: '', meta: '' };
             },
-            codeFencedFence(): undefined /* The opening fence line. */ {},
-            codeFencedFenceSequence(): undefined /* The opening fence characters (```). */ {},
+            codeFencedFence(): undefined /* The opening fence line. */ {
+                /* empty */
+            },
+            codeFencedFenceSequence(): undefined /* The opening fence characters (```). */ {
+                /* empty */
+            },
             codeFencedFenceInfo(this: CompileContext, token: Token): undefined /* The language identifier (json, javascript...). */ {
                 if (currentBlockData !== undefined) currentBlockData.lang = this.sliceSerialize(token);
             },
@@ -103,26 +109,44 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
             }
         },
         exit: {
-            codeFlowValue(): undefined /*  Done capturing the code. */ {},
-            codeFencedFenceMeta(): undefined /* Done processing the metadata. */ {},
-            codeFencedFenceInfo(): undefined /* Done processing the language identifier. */ {},
-            codeFencedFenceSequence(): undefined /* The closing fence characters (```). */ {},
-            codeFencedFence(): undefined /* The closing fence line. */ {},
+            codeFlowValue(): undefined /*  Done capturing the code. */ {
+                /* empty */
+            },
+            codeFencedFenceMeta(): undefined /* Done processing the metadata. */ {
+                /* empty */
+            },
+            codeFencedFenceInfo(): undefined /* Done processing the language identifier. */ {
+                /* empty */
+            },
+            codeFencedFenceSequence(): undefined /* The closing fence characters (```). */ {
+                /* empty */
+            },
+            codeFencedFence(): undefined /* The closing fence line. */ {
+                /* empty */
+            },
             codeFenced(this: CompileContext): undefined /* The entire code block is complete, replacement can happen now. */ {
                 const blockData = currentBlockData ?? { codeContent: [], lang: '', meta: '' };
                 this.resume(); // Discard the captured code text.
                 const rawContent = blockData.codeContent.join('\n');
                 const language = blockData.lang || 'plain';
-                const metaAttr = blockData.meta || '';
+                const metaAttribute = blockData.meta || '';
                 let html = '';
                 if (language === 'json') {
-                    if (metaAttr === 'dpuse-visual') {
-                        html = `<div class="${metaAttr}" data-options="${encodeURIComponent(rawContent)}"></div>`;
-                    } else if (metaAttr === 'dpuse-formula') {
-                        const v1 = JSON.parse(rawContent);
-                        html = generateMathML(v1.expression);
-                    } else if (metaAttr === 'dpuse-highcharts') {
-                        html = `<div class="${metaAttr}" data-options="${encodeURIComponent(rawContent)}"></div>`;
+                    switch (metaAttribute) {
+                        case 'dpuse-visual': {
+                            html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
+                            break;
+                        }
+                        case 'dpuse-formula': {
+                            const v1 = JSON.parse(rawContent) as { expression: string };
+                            html = generateMathML(v1.expression);
+                            break;
+                        }
+                        case 'dpuse-highcharts': {
+                            html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
+                            break;
+                        }
+                        // No default
                     }
                 } else {
                     const safeLang = language.replaceAll(/[^a-z0-9_-]/gi, '');
@@ -136,20 +160,20 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
 }
 
 // Helpers - Escape HTML.
-function escapeHTML(str: string): string {
-    return str.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
+function escapeHTML(string_: string): string {
+    return string_.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
 }
 
 // Helpers - Inject style.
 function injectStyle(cssText: string, styleId: string): void {
     if (typeof document === 'undefined') return;
 
-    let style = document.getElementById(styleId) as HTMLStyleElement | null;
+    let style = document.querySelector<HTMLStyleElement>(`#${styleId}`);
     if (style == null) {
         style = document.createElement('style');
         style.id = styleId;
-        style.dataset.dynamic = 'true';
-        document.head.appendChild(style);
+        style.dataset['dynamic'] = 'true';
+        document.head.append(style);
     }
     style.innerHTML = cssText;
     style.disabled = true; // This must be set after style is injected.
@@ -170,10 +194,8 @@ async function loadSpeedHighlight(colorModeId: string): Promise<typeof SpeedHigh
         injectStyle(lightThemeCss.default, 'theme-light');
         applyColorMode(colorModeId);
         speedHighlightPromise = undefined;
-        return speedHighlight!;
+        return speedHighlight;
     })();
 
     return speedHighlightPromise;
 }
-
-export { MicromarkTool, type RenderOptions };
