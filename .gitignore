@@ -1,7 +1,26 @@
-# Common git ignore configuration for published Data Positioning repositories.
-dependency-check-bin
+# '.gitignore' configuration for DPUse projects published to npm.
+.dev.vars
+.env*
+.eslintcache
+.npmrc
+.wrangler
+coverage
 dist-scripts
 node_modules
-.env
-.npmrc
+*.tsbuildinfo
 **/.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Rust
+rust/*/pkg
+rust/*/target
+rust/target
+
+# Testing
+__screenshots__/
+test-results/
+playwright-report/

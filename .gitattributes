@@ -1,4 +1,4 @@
-dependency-check-reports/*.html linguist-vendored
-dependency-check-reports/*.json linguist-vendored
-stats/*.js linguist-vendored
-stats/*.html linguist-vendored
+* text=auto eol=lf
+bundle-analysis-reports/** linguist-vendored
+docs/** linguist-vendored
+eslint.config.js linguist-detectable=false

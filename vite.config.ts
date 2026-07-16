@@ -1,42 +1,33 @@
-/**
- * Vite configuration.
- */
-
-// Dependencies - Vendor.
-import config from './config.json';
+// ── External Dependencies & Registrations
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { resolve } from 'node:path';
-import { visualizer } from 'rollup-plugin-visualizer';
+import Sonda from 'sonda/vite';
+import { fileURLToPath, URL } from 'node:url';
 
-// Exposures - Configuration.
+// ── Data
+import config from './config.json';
+
+// ── Vite Configuration ───────────────────────────────────────────────────────────────────────────────────────────────
+
 export default defineConfig({
-    base: 'https://engine-eu.dpuse.app/tools/',
     build: {
         lib: {
-            entry: resolve('src/index.ts'),
-            name: 'DPUseToolMicromark',
-            formats: ['es'],
-            fileName: (format) => `${config.id}.${format}.js`
+            entry: fileURLToPath(new URL('src/index.ts', import.meta.url)),
+            fileName: (format) => `${config.id}.${format}.js`,
+            formats: ['es']
         },
         rollupOptions: {
             external: [/^https:\/\/engine-eu\.dpuse\.app\//],
-            plugins: [
-                visualizer({
-                    filename: 'stats/index.html', // HTML report.
-                    open: false, // Automatically opens in browser.
-                    gzipSize: true, // Show gzip sizes.
-                    brotliSize: true // Show brotli sizes.
-                })
-            ]
+            plugins: [Sonda({ filename: 'index', format: 'json', brotli: true, gzip: false, open: false, outputDir: './bundle-analysis-reports/sonda' })]
         },
+        sourcemap: true,
         target: 'ESNext'
     },
-    plugins: [dts({ outDir: 'dist/types' })],
+    plugins: [dts({ outDirs: 'dist/types' })],
     resolve: {
         alias: {
-            '~': resolve(__dirname, '.'),
-            '@': resolve(__dirname, 'src')
+            '~': fileURLToPath(new URL('./', import.meta.url)),
+            '@': fileURLToPath(new URL('src', import.meta.url))
         }
     }
 });
