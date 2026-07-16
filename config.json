@@ -1,12 +1,14 @@
 {
     "id": "dpuse-tool-micromark",
     "label": {
-        "en-gb": "Micromark Tool"
+        "en": "Micromark Tool"
     },
     "description": {
-        "en-gb": "..."
+        "en": [
+            "..."
+        ]
     },
     "statusId": "alpha",
     "typeId": "tool",
-    "version": "0.1.997"
+    "version": "0.1.998"
 }

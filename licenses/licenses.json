@@ -1,1 +1,235 @@
-[{"department":"kessler","relatedTo":"stuff","name":"@speed-highlight/core","licensePeriod":"perpetual","material":"material","licenseType":"CC0-1.0","link":"git://github.com/speed-highlight/core.git","remoteVersion":"1.2.15","installedVersion":"1.2.15","definedVersion":"^1.2.15","author":"matubu hi@mathias.ninja https://mathias.ninja","latestRemoteModified":"2026-03-18T12:49:31.278Z"},{"department":"kessler","relatedTo":"stuff","name":"micromark","licensePeriod":"perpetual","material":"material","licenseType":"MIT","link":"git+https://github.com/micromark/micromark.git#main","remoteVersion":"4.0.2","installedVersion":"4.0.2","definedVersion":"^4.0.2","author":"Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)","latestRemoteModified":"2025-02-27T14:04:03.783Z"},{"department":"kessler","relatedTo":"stuff","name":"micromark-extension-gfm-table","licensePeriod":"perpetual","material":"material","licenseType":"MIT","link":"git+https://github.com/micromark/micromark-extension-gfm-table.git","remoteVersion":"2.1.1","installedVersion":"2.1.1","definedVersion":"^2.1.1","author":"Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)","latestRemoteModified":"2025-01-20T12:24:29.697Z"}]
+{
+    "@speed-highlight/core@1.2.17": {
+        "licenses": "CC0-1.0",
+        "repository": "https://github.com/speed-highlight/core",
+        "publisher": "matubu",
+        "email": "hi@mathias.ninja",
+        "path": "node_modules/@speed-highlight/core",
+        "licenseFile": "downloads/@speed-highlight/core@1.2.17-LICENSE.txt"
+    },
+    "@types/debug@4.1.12": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "path": "node_modules/@types/debug",
+        "licenseFile": "downloads/@types/debug@4.1.12-LICENSE.txt"
+    },
+    "@types/ms@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "path": "node_modules/@types/ms",
+        "licenseFile": "downloads/@types/ms@2.1.0-LICENSE.txt"
+    },
+    "character-entities@2.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/wooorm/character-entities",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/character-entities",
+        "licenseFile": "downloads/character-entities@2.0.2-LICENSE.txt"
+    },
+    "debug@4.4.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/debug-js/debug",
+        "publisher": "Josh Junon",
+        "path": "node_modules/debug",
+        "licenseFile": "downloads/debug@4.4.3-LICENSE.txt"
+    },
+    "decode-named-character-reference@1.2.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/wooorm/decode-named-character-reference",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/decode-named-character-reference",
+        "licenseFile": "downloads/decode-named-character-reference@1.2.0-LICENSE.txt"
+    },
+    "dequal@2.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/lukeed/dequal",
+        "publisher": "Luke Edwards",
+        "email": "luke.edwards05@gmail.com",
+        "path": "node_modules/dequal",
+        "licenseFile": "downloads/dequal@2.0.3-LICENSE.txt"
+    },
+    "devlop@1.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/wooorm/devlop",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/devlop",
+        "licenseFile": "downloads/devlop@1.1.0-LICENSE.txt"
+    },
+    "micromark-core-commonmark@2.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-core-commonmark",
+        "licenseFile": "downloads/micromark-core-commonmark@2.0.3-LICENSE.txt"
+    },
+    "micromark-extension-gfm-table@2.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark-extension-gfm-table",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-extension-gfm-table",
+        "licenseFile": "downloads/micromark-extension-gfm-table@2.1.1-LICENSE.txt"
+    },
+    "micromark-factory-destination@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-factory-destination",
+        "licenseFile": "downloads/micromark-factory-destination@2.0.1-LICENSE.txt"
+    },
+    "micromark-factory-label@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-factory-label",
+        "licenseFile": "downloads/micromark-factory-label@2.0.1-LICENSE.txt"
+    },
+    "micromark-factory-space@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-factory-space",
+        "licenseFile": "downloads/micromark-factory-space@2.0.1-LICENSE.txt"
+    },
+    "micromark-factory-title@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-factory-title",
+        "licenseFile": "downloads/micromark-factory-title@2.0.1-LICENSE.txt"
+    },
+    "micromark-factory-whitespace@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-factory-whitespace",
+        "licenseFile": "downloads/micromark-factory-whitespace@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-character@2.1.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-character",
+        "licenseFile": "downloads/micromark-util-character@2.1.1-LICENSE.txt"
+    },
+    "micromark-util-chunked@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-chunked",
+        "licenseFile": "downloads/micromark-util-chunked@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-classify-character@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-classify-character",
+        "licenseFile": "downloads/micromark-util-classify-character@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-combine-extensions@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-combine-extensions",
+        "licenseFile": "downloads/micromark-util-combine-extensions@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-decode-numeric-character-reference@2.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-decode-numeric-character-reference",
+        "licenseFile": "downloads/micromark-util-decode-numeric-character-reference@2.0.2-LICENSE.txt"
+    },
+    "micromark-util-encode@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-encode",
+        "licenseFile": "downloads/micromark-util-encode@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-html-tag-name@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-html-tag-name",
+        "licenseFile": "downloads/micromark-util-html-tag-name@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-normalize-identifier@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-normalize-identifier",
+        "licenseFile": "downloads/micromark-util-normalize-identifier@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-resolve-all@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-resolve-all",
+        "licenseFile": "downloads/micromark-util-resolve-all@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-sanitize-uri@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-sanitize-uri",
+        "licenseFile": "downloads/micromark-util-sanitize-uri@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-subtokenize@2.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-subtokenize",
+        "licenseFile": "downloads/micromark-util-subtokenize@2.1.0-LICENSE.txt"
+    },
+    "micromark-util-symbol@2.0.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-symbol",
+        "licenseFile": "downloads/micromark-util-symbol@2.0.1-LICENSE.txt"
+    },
+    "micromark-util-types@2.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark-util-types",
+        "licenseFile": "downloads/micromark-util-types@2.0.2-LICENSE.txt"
+    },
+    "micromark@4.0.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/micromark/micromark.git#main",
+        "publisher": "Titus Wormer",
+        "email": "tituswormer@gmail.com",
+        "path": "node_modules/micromark",
+        "licenseFile": "downloads/micromark@4.0.2-LICENSE.txt"
+    },
+    "ms@2.1.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/vercel/ms",
+        "path": "node_modules/ms",
+        "licenseFile": "downloads/ms@2.1.3-LICENSE.txt"
+    }
+}

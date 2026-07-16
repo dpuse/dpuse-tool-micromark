@@ -1,4 +1,4 @@
-import { d as e, l as t, t as n, u as r } from "./micromark-factory-space--cD_Xj01.js";
+import { d as e, l as t, t as n, u as r } from "./micromark-factory-space-Cq-2i9SZ.js";
 //#region node_modules/micromark-extension-gfm-table/lib/html.js
 var i = {
 	none: "",
@@ -323,3 +323,5 @@ function h(e, t) {
 }
 //#endregion
 export { u as gfmTable, a as gfmTableHtml };
+
+//# sourceMappingURL=micromark-extension-gfm-table-u0XhUoHG.js.map

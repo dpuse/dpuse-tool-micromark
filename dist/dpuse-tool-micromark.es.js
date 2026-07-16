@@ -1,4 +1,4 @@
-import { a as e, c as t, d as n, f as r, i, l as a, n as o, o as s, p as c, r as l, s as u, t as d, u as f } from "./micromark-factory-space--cD_Xj01.js";
+import { a as e, c as t, d as n, f as r, i, l as a, n as o, o as s, p as c, r as l, s as u, t as d, u as f } from "./micromark-factory-space-Cq-2i9SZ.js";
 //#region \0rolldown/runtime.js
 var p = Object.defineProperty, m = (e, t) => {
 	let n = {};
@@ -12,7 +12,7 @@ function g(e) {
 	let t = "&" + e + ";";
 	h.innerHTML = t;
 	let n = h.textContent;
-	return n.charCodeAt(n.length - 1) === 59 && e !== "semi" || n === t ? !1 : n;
+	return n.charCodeAt(n.length - 1) === 59 && e !== "semi" ? !1 : n !== t && n;
 }
 //#endregion
 //#region node_modules/micromark-util-chunked/index.js
@@ -1002,7 +1002,6 @@ function xe(e) {
 	return e !== 96 || this.events[this.events.length - 1][1].type === "characterEscape";
 }
 function Se(e, t, n) {
-	this;
 	let r = 0, i, o;
 	return s;
 	function s(t) {
@@ -2454,7 +2453,7 @@ var nn = {
 	}
 	async render(e, t) {
 		return (t?.tables ?? !1) && (!an && !$ && ($ = (async () => {
-			let e = await import("./micromark-extension-gfm-table-DVWUn-g9.js");
+			let e = await import("./micromark-extension-gfm-table-u0XhUoHG.js");
 			rn.extensions?.push(e.gfmTable()), rn.htmlExtensions?.push(e.gfmTableHtml()), an = !0, $ = void 0;
 		})()), $ && await $), Qt(e, rn);
 	}
@@ -2532,12 +2531,14 @@ function fn(e, t) {
 async function pn(e) {
 	return on || (sn ??= (async () => {
 		let [t, n, r] = await Promise.all([
-			import("./dist-CJmpnJN5.js"),
-			import("./github-dark-C85omcCp.js"),
-			import("./github-light-BBuUW6Hm.js")
+			import("./dist-B-l9gIeO.js"),
+			import("./github-dark-BQgApYrA.js"),
+			import("./github-light-CYQxR7sx.js")
 		]);
 		return on = t, fn(n.default, "theme-dark"), fn(r.default, "theme-light"), ln(e), sn = void 0, on;
 	})(), sn);
 }
 //#endregion
 export { cn as MicromarkTool };
+
+//# sourceMappingURL=dpuse-tool-micromark.es.js.map

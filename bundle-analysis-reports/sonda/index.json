@@ -1,0 +1,1328 @@
+{
+  "metadata": {
+    "version": "0.14.0",
+    "generatedAt": "2026-07-16T14:23:27.199Z",
+    "integration": "vite",
+    "sources": false,
+    "gzip": false,
+    "brotli": true
+  },
+  "resources": [
+    {
+      "kind": "sourcemap",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 0,
+      "parent": null
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 8537,
+      "gzip": 0,
+      "brotli": 674,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 2900,
+      "gzip": 0,
+      "brotli": 159,
+      "parent": "dist/dist-B-l9gIeO.js"
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 1785,
+      "gzip": 0,
+      "brotli": 686,
+      "parent": "dist/github-dark-BQgApYrA.js"
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 1714,
+      "gzip": 0,
+      "brotli": 656,
+      "parent": "dist/github-light-CYQxR7sx.js"
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 1274,
+      "gzip": 0,
+      "brotli": 255,
+      "parent": "dist/micromark-extension-gfm-table-u0XhUoHG.js"
+    },
+    {
+      "kind": "chunk",
+      "name": "[unassigned]",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 334,
+      "gzip": 0,
+      "brotli": 130,
+      "parent": "dist/micromark-factory-space-Cq-2i9SZ.js"
+    },
+    {
+      "kind": "asset",
+      "name": "dist/dist-B-l9gIeO.js",
+      "type": "script",
+      "uncompressed": 28641,
+      "gzip": 0,
+      "brotli": 8114
+    },
+    {
+      "kind": "asset",
+      "name": "dist/dpuse-tool-micromark.es.js",
+      "type": "script",
+      "uncompressed": 74852,
+      "gzip": 0,
+      "brotli": 16316
+    },
+    {
+      "kind": "asset",
+      "name": "dist/github-dark-BQgApYrA.js",
+      "type": "script",
+      "uncompressed": 1785,
+      "gzip": 0,
+      "brotli": 686
+    },
+    {
+      "kind": "asset",
+      "name": "dist/github-light-CYQxR7sx.js",
+      "type": "script",
+      "uncompressed": 1714,
+      "gzip": 0,
+      "brotli": 656
+    },
+    {
+      "kind": "asset",
+      "name": "dist/micromark-extension-gfm-table-u0XhUoHG.js",
+      "type": "script",
+      "uncompressed": 9885,
+      "gzip": 0,
+      "brotli": 2536
+    },
+    {
+      "kind": "asset",
+      "name": "dist/micromark-factory-space-Cq-2i9SZ.js",
+      "type": "script",
+      "uncompressed": 1063,
+      "gzip": 0,
+      "brotli": 451
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/@speed-highlight/core/dist/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 23055
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/@speed-highlight/core/dist/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 25741,
+      "gzip": 0,
+      "brotli": 7955,
+      "parent": "dist/dist-B-l9gIeO.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/@speed-highlight/core/dist/themes/github-dark.css?raw",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 1626
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/@speed-highlight/core/dist/themes/github-light.css?raw",
+      "type": "other",
+      "format": "other",
+      "uncompressed": 1553
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/decode-named-character-reference/index.dom.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1235
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/decode-named-character-reference/index.dom.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 192,
+      "gzip": 0,
+      "brotli": 94,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1151
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/attention.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 7172
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/attention.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2440,
+      "gzip": 0,
+      "brotli": 532,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/autolink.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4817
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/autolink.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1264,
+      "gzip": 0,
+      "brotli": 250,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/blank-line.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1165
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/blank-line.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 198,
+      "gzip": 0,
+      "brotli": 93,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/block-quote.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2731
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/block-quote.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 852,
+      "gzip": 0,
+      "brotli": 221,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/character-escape.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1173
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/character-escape.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 355,
+      "gzip": 0,
+      "brotli": 106,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/character-reference.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3300
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/character-reference.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1044,
+      "gzip": 0,
+      "brotli": 214,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/code-fenced.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 9281
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/code-fenced.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2703,
+      "gzip": 0,
+      "brotli": 491,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/code-indented.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4038
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/code-indented.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1015,
+      "gzip": 0,
+      "brotli": 254,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/code-text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4840
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/code-text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1604,
+      "gzip": 0,
+      "brotli": 373,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/content.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3290
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/content.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1057,
+      "gzip": 0,
+      "brotli": 294,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/definition.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 5653
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/definition.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1287,
+      "gzip": 0,
+      "brotli": 286,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/hard-break-escape.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 984
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/hard-break-escape.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 231,
+      "gzip": 0,
+      "brotli": 92,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/heading-atx.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4386
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/heading-atx.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1329,
+      "gzip": 0,
+      "brotli": 322,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/html-flow.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 18627
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/html-flow.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4423,
+      "gzip": 0,
+      "brotli": 741,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/html-text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 13364
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/html-text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3082,
+      "gzip": 0,
+      "brotli": 451,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/label-end.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 12658
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/label-end.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3706,
+      "gzip": 0,
+      "brotli": 709,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/label-start-image.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1945
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/label-start-image.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 481,
+      "gzip": 0,
+      "brotli": 156,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/label-start-link.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1116
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/label-start-link.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 359,
+      "gzip": 0,
+      "brotli": 139,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/line-ending.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 676
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/line-ending.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 186,
+      "gzip": 0,
+      "brotli": 82,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/list.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 6251
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/list.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2985,
+      "gzip": 0,
+      "brotli": 560,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/setext-underline.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4282
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/setext-underline.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1340,
+      "gzip": 0,
+      "brotli": 363,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-core-commonmark/lib/thematic-break.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1873
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-core-commonmark/lib/thematic-break.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 479,
+      "gzip": 0,
+      "brotli": 167,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-extension-gfm-table/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 89
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-extension-gfm-table/lib/edit-map.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 5284
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-extension-gfm-table/lib/edit-map.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 674,
+      "gzip": 0,
+      "brotli": 279,
+      "parent": "dist/micromark-extension-gfm-table-u0XhUoHG.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-extension-gfm-table/lib/html.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3820
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-extension-gfm-table/lib/html.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1755,
+      "gzip": 0,
+      "brotli": 449,
+      "parent": "dist/micromark-extension-gfm-table-u0XhUoHG.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-extension-gfm-table/lib/infer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1511
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-extension-gfm-table/lib/infer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 501,
+      "gzip": 0,
+      "brotli": 198,
+      "parent": "dist/micromark-extension-gfm-table-u0XhUoHG.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-extension-gfm-table/lib/syntax.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 20730
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-extension-gfm-table/lib/syntax.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 5681,
+      "gzip": 0,
+      "brotli": 1354,
+      "parent": "dist/micromark-extension-gfm-table-u0XhUoHG.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-factory-destination/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 4398
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-factory-destination/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1128,
+      "gzip": 0,
+      "brotli": 252,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-factory-label/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3210
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-factory-label/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 772,
+      "gzip": 0,
+      "brotli": 219,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-factory-space/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1514
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-factory-space/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 215,
+      "gzip": 0,
+      "brotli": 130,
+      "parent": "dist/micromark-factory-space-Cq-2i9SZ.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-factory-title/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3063
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-factory-title/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 726,
+      "gzip": 0,
+      "brotli": 200,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-factory-whitespace/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1203
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-factory-whitespace/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 202,
+      "gzip": 0,
+      "brotli": 88,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-character/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 7068
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-character/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 514,
+      "gzip": 0,
+      "brotli": 191,
+      "parent": "dist/micromark-factory-space-Cq-2i9SZ.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-chunked/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2334
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-chunked/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 387,
+      "gzip": 0,
+      "brotli": 147,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-classify-character/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 803
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-classify-character/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 80,
+      "gzip": 0,
+      "brotli": 49,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-combine-extensions/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3318
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-combine-extensions/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 690,
+      "gzip": 0,
+      "brotli": 192,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-decode-numeric-character-reference/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1061
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-decode-numeric-character-reference/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 269,
+      "gzip": 0,
+      "brotli": 105,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-encode/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 757
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-encode/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 153,
+      "gzip": 0,
+      "brotli": 88,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-html-tag-name/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1680
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-html-tag-name/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 442,
+      "gzip": 0,
+      "brotli": 168,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-normalize-identifier/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1248
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-normalize-identifier/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 106,
+      "gzip": 0,
+      "brotli": 52,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-resolve-all/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 784
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-resolve-all/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 156,
+      "gzip": 0,
+      "brotli": 75,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-sanitize-uri/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3159
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-sanitize-uri/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 840,
+      "gzip": 0,
+      "brotli": 283,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-subtokenize/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 6851
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-subtokenize/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2227,
+      "gzip": 0,
+      "brotli": 576,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark-util-subtokenize/lib/splice-buffer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 7617
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark-util-subtokenize/lib/splice-buffer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1769,
+      "gzip": 0,
+      "brotli": 356,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1893
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/index.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 127,
+      "gzip": 0,
+      "brotli": 63,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/compile.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 26755
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/compile.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 8202,
+      "gzip": 0,
+      "brotli": 1569,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/constructs.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1964
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/constructs.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 441,
+      "gzip": 0,
+      "brotli": 151,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/create-tokenizer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 15175
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/create-tokenizer.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3713,
+      "gzip": 0,
+      "brotli": 919,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/initialize/content.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1721
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/initialize/content.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 623,
+      "gzip": 0,
+      "brotli": 190,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/initialize/document.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 10860
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/initialize/document.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2670,
+      "gzip": 0,
+      "brotli": 619,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/initialize/flow.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1507
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/initialize/flow.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 548,
+      "gzip": 0,
+      "brotli": 144,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/initialize/text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 5566
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/initialize/text.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1893,
+      "gzip": 0,
+      "brotli": 549,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/parse.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1435
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/parse.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 254,
+      "gzip": 0,
+      "brotli": 105,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/postprocess.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 314
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/postprocess.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 46,
+      "gzip": 0,
+      "brotli": 34,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "node_modules/micromark/lib/preprocess.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 3063
+    },
+    {
+      "kind": "chunk",
+      "name": "node_modules/micromark/lib/preprocess.js",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 842,
+      "gzip": 0,
+      "brotli": 303,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "src/formula.ts",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2197
+    },
+    {
+      "kind": "chunk",
+      "name": "src/formula.ts",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 1481,
+      "gzip": 0,
+      "brotli": 365,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    },
+    {
+      "kind": "filesystem",
+      "name": "src/index.ts",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 5021
+    },
+    {
+      "kind": "chunk",
+      "name": "src/index.ts",
+      "type": "script",
+      "format": "esm",
+      "uncompressed": 2916,
+      "gzip": 0,
+      "brotli": 789,
+      "parent": "dist/dpuse-tool-micromark.es.js"
+    }
+  ],
+  "connections": [
+    {
+      "kind": "dynamic-import",
+      "source": "src/index.ts",
+      "target": "node_modules/micromark-extension-gfm-table/index.js",
+      "original": null
+    },
+    {
+      "kind": "dynamic-import",
+      "source": "src/index.ts",
+      "target": "node_modules/@speed-highlight/core/dist/index.js",
+      "original": null
+    },
+    {
+      "kind": "dynamic-import",
+      "source": "src/index.ts",
+      "target": "node_modules/@speed-highlight/core/dist/themes/github-dark.css?raw",
+      "original": null
+    },
+    {
+      "kind": "dynamic-import",
+      "source": "src/index.ts",
+      "target": "node_modules/@speed-highlight/core/dist/themes/github-light.css?raw",
+      "original": null
+    },
+    {
+      "kind": "entrypoint",
+      "source": "dist/dpuse-tool-micromark.es.js",
+      "target": "src/index.ts",
+      "original": null
+    },
+    {
+      "kind": "entrypoint",
+      "source": "dist/dist-B-l9gIeO.js",
+      "target": "node_modules/@speed-highlight/core/dist/index.js",
+      "original": null
+    },
+    {
+      "kind": "entrypoint",
+      "source": "dist/github-dark-BQgApYrA.js",
+      "target": "node_modules/@speed-highlight/core/dist/themes/github-dark.css?raw",
+      "original": null
+    },
+    {
+      "kind": "entrypoint",
+      "source": "dist/github-light-CYQxR7sx.js",
+      "target": "node_modules/@speed-highlight/core/dist/themes/github-light.css?raw",
+      "original": null
+    },
+    {
+      "kind": "entrypoint",
+      "source": "dist/micromark-extension-gfm-table-u0XhUoHG.js",
+      "target": "node_modules/micromark-extension-gfm-table/index.js",
+      "original": null
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "@speed-highlight/core",
+      "paths": [
+        "node_modules/@speed-highlight/core"
+      ]
+    },
+    {
+      "name": "decode-named-character-reference",
+      "paths": [
+        "node_modules/decode-named-character-reference"
+      ]
+    },
+    {
+      "name": "micromark",
+      "paths": [
+        "node_modules/micromark"
+      ]
+    },
+    {
+      "name": "micromark-core-commonmark",
+      "paths": [
+        "node_modules/micromark-core-commonmark"
+      ]
+    },
+    {
+      "name": "micromark-extension-gfm-table",
+      "paths": [
+        "node_modules/micromark-extension-gfm-table"
+      ]
+    },
+    {
+      "name": "micromark-factory-destination",
+      "paths": [
+        "node_modules/micromark-factory-destination"
+      ]
+    },
+    {
+      "name": "micromark-factory-label",
+      "paths": [
+        "node_modules/micromark-factory-label"
+      ]
+    },
+    {
+      "name": "micromark-factory-space",
+      "paths": [
+        "node_modules/micromark-factory-space"
+      ]
+    },
+    {
+      "name": "micromark-factory-title",
+      "paths": [
+        "node_modules/micromark-factory-title"
+      ]
+    },
+    {
+      "name": "micromark-factory-whitespace",
+      "paths": [
+        "node_modules/micromark-factory-whitespace"
+      ]
+    },
+    {
+      "name": "micromark-util-character",
+      "paths": [
+        "node_modules/micromark-util-character"
+      ]
+    },
+    {
+      "name": "micromark-util-chunked",
+      "paths": [
+        "node_modules/micromark-util-chunked"
+      ]
+    },
+    {
+      "name": "micromark-util-classify-character",
+      "paths": [
+        "node_modules/micromark-util-classify-character"
+      ]
+    },
+    {
+      "name": "micromark-util-combine-extensions",
+      "paths": [
+        "node_modules/micromark-util-combine-extensions"
+      ]
+    },
+    {
+      "name": "micromark-util-decode-numeric-character-reference",
+      "paths": [
+        "node_modules/micromark-util-decode-numeric-character-reference"
+      ]
+    },
+    {
+      "name": "micromark-util-encode",
+      "paths": [
+        "node_modules/micromark-util-encode"
+      ]
+    },
+    {
+      "name": "micromark-util-html-tag-name",
+      "paths": [
+        "node_modules/micromark-util-html-tag-name"
+      ]
+    },
+    {
+      "name": "micromark-util-normalize-identifier",
+      "paths": [
+        "node_modules/micromark-util-normalize-identifier"
+      ]
+    },
+    {
+      "name": "micromark-util-resolve-all",
+      "paths": [
+        "node_modules/micromark-util-resolve-all"
+      ]
+    },
+    {
+      "name": "micromark-util-sanitize-uri",
+      "paths": [
+        "node_modules/micromark-util-sanitize-uri"
+      ]
+    },
+    {
+      "name": "micromark-util-subtokenize",
+      "paths": [
+        "node_modules/micromark-util-subtokenize"
+      ]
+    }
+  ],
+  "issues": [],
+  "sourcemaps": []
+}

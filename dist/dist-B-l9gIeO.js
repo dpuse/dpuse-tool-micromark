@@ -319,7 +319,7 @@ var C, w, T, E, D, O, k = n(() => {
 		]
 	}, O = [
 		{
-			match: /<!--((?!-->)[^])*-->/g,
+			match: /<!--[^]*?-->/g,
 			sub: "todo"
 		},
 		{
@@ -370,7 +370,7 @@ var j, pe = n(() => {
 			]
 		},
 		{
-			match: RegExp(`<style${E}>((?!</style>)[^])*</style\\s*>`, "g"),
+			match: RegExp(`<style${E}>[^]*?</style\\s*>`, "g"),
 			sub: [
 				{
 					match: RegExp(`^<style${E}>`, "g"),
@@ -384,7 +384,7 @@ var j, pe = n(() => {
 			]
 		},
 		{
-			match: RegExp(`<script${E}>((?!<\/script>)[^])*<\/script\\s*>`, "g"),
+			match: RegExp(`<script${E}>[^]*?<\/script\\s*>`, "g"),
 			sub: [
 				{
 					match: RegExp(`^<script${E}>`, "g"),
@@ -533,6 +533,7 @@ var B, ge = n(() => {
 r(V, { default: () => H });
 var H, U = n(() => {
 	H = [
+		{ match: /(("|')([^\r\n\\]|\\[^])*?\2|[a-zA-Z]\w*)(?=\s*:)/g },
 		{
 			match: /\/\*\*((?!\*\/)[^])*(\*\/)?/g,
 			sub: "jsdoc"
@@ -655,7 +656,7 @@ var we, Te = n(() => {
 	we = [
 		{
 			type: "var",
-			match: /(("|')((?!\2)[^\r\n\\]|\\[^])*\2|[a-zA-Z]\w*)(?=\s*:)/g
+			match: /(("|')([^\r\n\\]|\\[^])*?\2|[a-zA-Z]\w*)(?=\s*:)/g
 		},
 		{ expand: "str" },
 		{ expand: "num" },
@@ -678,10 +679,10 @@ var X, De = n(() => {
 		},
 		{
 			type: "class",
-			match: /\*\*((?!\*\*).)*\*\*/g
+			match: /\*\*.*?\*\*/g
 		},
 		{
-			match: /```((?!```)[^])*\n```/g,
+			match: /^(`{3,})(.*)\n[^]*?^\1[ \t]*$/gm,
 			sub: (e) => ({
 				type: "kwd",
 				sub: [{
@@ -696,7 +697,7 @@ var X, De = n(() => {
 		},
 		{
 			type: "var",
-			match: /~~((?!~~).)*~~/g
+			match: /~~.*?~~/g
 		},
 		{
 			type: "kwd",
@@ -775,7 +776,7 @@ r(Pe, { default: () => Fe });
 var Fe, Ie = n(() => {
 	Fe = [
 		{
-			match: /^#!.*|--(\[(=*)\[((?!--\]\2\])[^])*--\]\2\]|.*)/g,
+			match: /^#!.*|--(\[(=*)\[[^]*?--\]\2\]|.*)/g,
 			sub: "todo"
 		},
 		{ expand: "str" },
@@ -1196,3 +1197,5 @@ var St = async (e) => Promise.all(Array.from(document.querySelectorAll("[class*=
 };
 //#endregion
 export { St as highlightAll, xt as highlightElement, bt as highlightText, Ct as loadLanguage, $ as tokenize };
+
+//# sourceMappingURL=dist-B-l9gIeO.js.map
