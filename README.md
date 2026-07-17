@@ -202,79 +202,99 @@ _Note: Sonda's Vite reports currently exclude CSS files, since Vite does not gen
 
 |Chunk/Module/File|Composition|
 |:------ |:-----------|
-| dist/dpuse-tool-micromark.es.js | 73.1 kB · brotli 15.9 kB |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-core-commonmark | `█████░░░░░░░░░░░░░░░` 27.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html-flow.js | `█░░░░░░░░░░░░░░░░░░░` 3.8% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/label-end.js | `█░░░░░░░░░░░░░░░░░░░` 3.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html-text.js | `█░░░░░░░░░░░░░░░░░░░` 2.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/list.js | `█░░░░░░░░░░░░░░░░░░░` 2.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-fenced.js | `░░░░░░░░░░░░░░░░░░░░` 2.3% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/attention.js | `░░░░░░░░░░░░░░░░░░░░` 2.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-text.js | `░░░░░░░░░░░░░░░░░░░░` 1.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/setext-underline.js | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/heading-atx.js | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/definition.js | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/autolink.js | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/content.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/character-reference.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-indented.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/block-quote.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/label-start-image.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/thematic-break.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
+| dist/dpuse-tool-micromark.es.js | 73.6 kB · brotli 15.9 kB |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-core-commonmark | `█████░░░░░░░░░░░░░░░` 23.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html-flow.js | `█░░░░░░░░░░░░░░░░░░░` 3.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/label-end.js | `█░░░░░░░░░░░░░░░░░░░` 2.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html-text.js | `░░░░░░░░░░░░░░░░░░░░` 2.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/list.js | `░░░░░░░░░░░░░░░░░░░░` 2.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-fenced.js | `░░░░░░░░░░░░░░░░░░░░` 2.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/attention.js | `░░░░░░░░░░░░░░░░░░░░` 1.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-text.js | `░░░░░░░░░░░░░░░░░░░░` 1.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/setext-underline.js | `░░░░░░░░░░░░░░░░░░░░` 1.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/heading-atx.js | `░░░░░░░░░░░░░░░░░░░░` 1.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/definition.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/autolink.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/content.js | `░░░░░░░░░░░░░░░░░░░░` 0.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/character-reference.js | `░░░░░░░░░░░░░░░░░░░░` 0.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/code-indented.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/block-quote.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/label-start-image.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/thematic-break.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/label-start-link.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/character-escape.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/hard-break-escape.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/blank-line.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/line-ending.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark | `███░░░░░░░░░░░░░░░░░` 16.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/compile.js | `█░░░░░░░░░░░░░░░░░░░` 7.0% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/create-tokenizer.js | `█░░░░░░░░░░░░░░░░░░░` 3.1% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/document.js | `░░░░░░░░░░░░░░░░░░░░` 2.3% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/text.js | `░░░░░░░░░░░░░░░░░░░░` 1.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/preprocess.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/blank-line.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/line-ending.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark | `███░░░░░░░░░░░░░░░░░` 14.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/compile.js | `█░░░░░░░░░░░░░░░░░░░` 5.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/create-tokenizer.js | `█░░░░░░░░░░░░░░░░░░░` 2.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/document.js | `░░░░░░░░░░░░░░░░░░░░` 1.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/text.js | `░░░░░░░░░░░░░░░░░░░░` 1.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/preprocess.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/content.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/flow.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/constructs.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/initialize/flow.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/constructs.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/parse.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/postprocess.js | `░░░░░░░░░░░░░░░░░░░░` 0.0% |
-| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `█░░░░░░░░░░░░░░░░░░░` 7.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;src | `█░░░░░░░░░░░░░░░░░░░` 3.7% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.ts | `░░░░░░░░░░░░░░░░░░░░` 2.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formula.ts | `░░░░░░░░░░░░░░░░░░░░` 1.3% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-subtokenize | `█░░░░░░░░░░░░░░░░░░░` 3.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.js | `░░░░░░░░░░░░░░░░░░░░` 1.9% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/splice-buffer.js | `░░░░░░░░░░░░░░░░░░░░` 1.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-destination → index.js | `░░░░░░░░░░░░░░░░░░░░` 1.0% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-sanitize-uri → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-label → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.7% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-title → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-combine-extensions → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-html-tag-name → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `█░░░░░░░░░░░░░░░░░░░` 6.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;src | `█░░░░░░░░░░░░░░░░░░░` 3.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.ts | `█░░░░░░░░░░░░░░░░░░░` 2.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formula.ts | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-subtokenize | `█░░░░░░░░░░░░░░░░░░░` 2.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index.js | `░░░░░░░░░░░░░░░░░░░░` 1.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/splice-buffer.js | `░░░░░░░░░░░░░░░░░░░░` 1.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-destination → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-sanitize-uri → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-label → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-title → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-combine-extensions → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-html-tag-name → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-chunked → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-decode-numeric-character-reference → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-whitespace → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
-| &nbsp;&nbsp;&nbsp;&nbsp;decode-named-character-reference → index.dom.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-resolve-all → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-encode → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-normalize-identifier → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-classify-character → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 | dist/dist-B-l9gIeO.js | 28.0 kB · brotli 7.9 kB |
-| &nbsp;&nbsp;&nbsp;&nbsp;@speed-highlight/core → dist/index.js | `████░░░░░░░░░░░░░░░░` 21.8% |
-| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 2.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;@speed-highlight/core → dist/index.js | `████░░░░░░░░░░░░░░░░` 18.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 2.1% |
+| dist/micromark-extension-directive-DufZgUDE.js | 18.5 kB · brotli 4.4 kB |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-extension-directive | `██░░░░░░░░░░░░░░░░░░` 8.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/directive-container.js | `░░░░░░░░░░░░░░░░░░░░` 2.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html.js | `░░░░░░░░░░░░░░░░░░░░` 2.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/factory-attributes.js | `░░░░░░░░░░░░░░░░░░░░` 1.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/directive-leaf.js | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/directive-text.js | `░░░░░░░░░░░░░░░░░░░░` 0.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/factory-label.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/factory-name.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/syntax.js | `░░░░░░░░░░░░░░░░░░░░` 0.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;parse-entities → lib/index.js | `░░░░░░░░░░░░░░░░░░░░` 2.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 1.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;character-entities-legacy → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;character-reference-invalid → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;is-hexadecimal → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;is-alphabetical → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;is-decimal → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;is-alphanumerical → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.0% |
 | dist/micromark-extension-gfm-table-u0XhUoHG.js | 9.7 kB · brotli 2.5 kB |
-| &nbsp;&nbsp;&nbsp;&nbsp;micromark-extension-gfm-table | `█░░░░░░░░░░░░░░░░░░░` 7.3% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/syntax.js | `█░░░░░░░░░░░░░░░░░░░` 4.8% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html.js | `░░░░░░░░░░░░░░░░░░░░` 1.5% |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/edit-map.js | `░░░░░░░░░░░░░░░░░░░░` 0.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-extension-gfm-table | `█░░░░░░░░░░░░░░░░░░░` 6.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/syntax.js | `█░░░░░░░░░░░░░░░░░░░` 4.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/html.js | `░░░░░░░░░░░░░░░░░░░░` 1.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/edit-map.js | `░░░░░░░░░░░░░░░░░░░░` 0.5% |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lib/infer.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 1.1% |
-| dist/github-dark-BQgApYrA.js → (unassigned) → [unassigned] | 1.7 kB · brotli 686 B · `░░░░░░░░░░░░░░░░░░░░` 1.5% |
-| dist/github-light-CYQxR7sx.js → (unassigned) → [unassigned] | 1.7 kB · brotli 656 B · `░░░░░░░░░░░░░░░░░░░░` 1.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 0.9% |
+| dist/github-dark-BQgApYrA.js → (unassigned) → [unassigned] | 1.7 kB · brotli 686 B · `░░░░░░░░░░░░░░░░░░░░` 1.3% |
+| dist/github-light-CYQxR7sx.js → (unassigned) → [unassigned] | 1.7 kB · brotli 656 B · `░░░░░░░░░░░░░░░░░░░░` 1.2% |
 | dist/micromark-factory-space-Cq-2i9SZ.js | 1.0 kB · brotli 451 B |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-util-character → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.4% |
-| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 0.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
 | &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-space → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
+| dist/micromark-factory-whitespace-DvA2Lja_.js | 737 B · brotli 385 B |
+| &nbsp;&nbsp;&nbsp;&nbsp;(unassigned) → [unassigned] | `░░░░░░░░░░░░░░░░░░░░` 0.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;micromark-factory-whitespace → index.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode-named-character-reference → index.dom.js | `░░░░░░░░░░░░░░░░░░░░` 0.1% |
 
 <!-- BUNDLE_END -->
 

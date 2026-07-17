@@ -1,8 +1,5 @@
-/**
- * Micromark tool class.
- */
-
 // Dependencies - Micromark.
+import type { Directive } from 'micromark-extension-directive';
 import { micromark } from 'micromark';
 import type { CompileContext, HtmlExtension, Options, Token } from 'micromark-util-types';
 
@@ -14,6 +11,7 @@ import { generateMathML } from '@/formula';
 
 // Types/Interfaces
 export interface RenderOptions {
+    directives?: boolean;
     tables?: boolean;
 }
 
@@ -27,10 +25,14 @@ const micromarkOptions: Options = {
     extensions: [],
     htmlExtensions: [createPresenterCodeBlockHtmlExtension()]
 };
-let tableExtensionIsLoaded = false;
-let tableExtensionPromise: Promise<void> | undefined;
-let speedHighlight: typeof SpeedHighlight | undefined;
-let speedHighlightPromise: Promise<typeof SpeedHighlight> | undefined;
+const state = {
+    directiveExtensionPromise: undefined as Promise<void> | undefined,
+    isDirectiveExtensionLoaded: false,
+    isTableExtensionLoaded: false,
+    speedHighlight: undefined as typeof SpeedHighlight | undefined,
+    speedHighlightPromise: undefined as Promise<typeof SpeedHighlight> | undefined,
+    tableExtensionPromise: undefined as Promise<void> | undefined
+};
 
 // Classes - Micromark tool.
 export class MicromarkTool {
@@ -41,7 +43,7 @@ export class MicromarkTool {
         const { highlightElement } = await loadSpeedHighlight(colorModeId);
 
         for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
-            const lang = (/shj-lang-([^\s]+)/.exec((element as HTMLElement).className) ?? [])[1];
+            const lang = (/shj-lang-(\S+)/.exec((element as HTMLElement).className) ?? [])[1];
             if (lang === 'javascript') {
                 await highlightElement(element, 'js', 'multiline', { hideLineNumbers: true });
                 Object.assign((element as HTMLElement).style, {
@@ -54,17 +56,29 @@ export class MicromarkTool {
 
     // Operations - Render markdown.
     async render(markdown: string, options?: RenderOptions): Promise<string> {
+        if (options?.directives ?? false) {
+            if (!state.isDirectiveExtensionLoaded && !state.directiveExtensionPromise) {
+                state.directiveExtensionPromise = (async (): Promise<void> => {
+                    const module = await import('micromark-extension-directive');
+                    micromarkOptions.extensions?.push(module.directive());
+                    micromarkOptions.htmlExtensions?.push(module.directiveHtml({ note: handleNoteDirective }));
+                    state.isDirectiveExtensionLoaded = true;
+                    state.directiveExtensionPromise = undefined;
+                })();
+            }
+            if (state.directiveExtensionPromise) await state.directiveExtensionPromise;
+        }
         if (options?.tables ?? false) {
-            if (!tableExtensionIsLoaded && !tableExtensionPromise) {
-                tableExtensionPromise = (async (): Promise<void> => {
+            if (!state.isTableExtensionLoaded && !state.tableExtensionPromise) {
+                state.tableExtensionPromise = (async (): Promise<void> => {
                     const module = await import('micromark-extension-gfm-table');
                     micromarkOptions.extensions?.push(module.gfmTable());
                     micromarkOptions.htmlExtensions?.push(module.gfmTableHtml());
-                    tableExtensionIsLoaded = true;
-                    tableExtensionPromise = undefined;
+                    state.isTableExtensionLoaded = true;
+                    state.tableExtensionPromise = undefined;
                 })();
             }
-            if (tableExtensionPromise) await tableExtensionPromise;
+            if (state.tableExtensionPromise) await state.tableExtensionPromise;
         }
         return micromark(markdown, micromarkOptions);
     }
@@ -85,7 +99,10 @@ function applyColorMode(colorModeId: string): void {
 
 // Helpers - Create presenter code block.
 function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
-    let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined = undefined;
+    let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined;
+    /* eslint-disable unicorn/no-this-outside-of-class --
+       micromark's `Handle` type requires handlers typed as `this: CompileContext`; the CompileContext is passed via
+       dynamic `this` binding (micromark calls `handler.call(compileContext, token)`), not through a class. */
     return {
         enter: {
             codeFenced(this: CompileContext): undefined /* The entire fenced code block starts. */ {
@@ -133,23 +150,21 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
                 let html = '';
                 if (language === 'json') {
                     switch (metaAttribute) {
-                        case 'dpuse-visual': {
+                        case 'dpuse-visual':
                             html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
                             break;
-                        }
                         case 'dpuse-formula': {
                             const v1 = JSON.parse(rawContent) as { expression: string };
                             html = generateMathML(v1.expression);
                             break;
                         }
-                        case 'dpuse-highcharts': {
+                        case 'dpuse-highcharts':
                             html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
                             break;
-                        }
                         // No default
                     }
                 } else {
-                    const safeLang = language.replaceAll(/[^a-z0-9_-]/gi, '');
+                    const safeLang = language.replaceAll(/[^\w-]/g, '');
                     html = `<div class="shj-lang-${safeLang}">${escapeHTML(rawContent)}</div>`;
                 }
                 this.raw(html);
@@ -157,12 +172,27 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
             }
         }
     };
+    /* eslint-enable unicorn/no-this-outside-of-class --
+       end of the micromark `this: CompileContext` handler shim */
 }
 
 // Helpers - Escape HTML.
 function escapeHTML(string_: string): string {
     return string_.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
 }
+
+// Helpers - Handle note directive.
+/* eslint-disable unicorn/no-this-outside-of-class --
+   micromark's `Handle` type requires handlers typed as `this: CompileContext`; see createPresenterCodeBlockHtmlExtension. */
+function handleNoteDirective(this: CompileContext, directive: Directive): boolean | undefined {
+    if (directive.type !== 'leafDirective') return false;
+
+    this.tag('<div class="note">');
+    this.raw(directive.label ?? '');
+    this.tag('</div>');
+}
+/* eslint-enable unicorn/no-this-outside-of-class --
+   end of the micromark `this: CompileContext` handler shim */
 
 // Helpers - Inject style.
 function injectStyle(cssText: string, styleId: string): void {
@@ -181,21 +211,21 @@ function injectStyle(cssText: string, styleId: string): void {
 
 // Helpers - Load Speed Highlight and inject associated themes.
 async function loadSpeedHighlight(colorModeId: string): Promise<typeof SpeedHighlight> {
-    if (speedHighlight) return speedHighlight;
+    if (state.speedHighlight) return state.speedHighlight;
 
-    speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
+    state.speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
         const [module, darkThemeCss, lightThemeCss] = await Promise.all([
             import('@speed-highlight/core'),
             import('@speed-highlight/core/themes/github-dark.css?raw'),
             import('@speed-highlight/core/themes/github-light.css?raw')
         ]);
-        speedHighlight = module;
+        state.speedHighlight = module;
         injectStyle(darkThemeCss.default, 'theme-dark');
         injectStyle(lightThemeCss.default, 'theme-light');
         applyColorMode(colorModeId);
-        speedHighlightPromise = undefined;
-        return speedHighlight;
+        state.speedHighlightPromise = undefined;
+        return module;
     })();
 
-    return speedHighlightPromise;
+    return state.speedHighlightPromise;
 }

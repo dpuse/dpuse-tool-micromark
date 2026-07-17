@@ -1,7 +1,5 @@
-/**
- * Micromark tool class.
- */
 export interface RenderOptions {
+    directives?: boolean;
     tables?: boolean;
 }
 export declare class MicromarkTool {
