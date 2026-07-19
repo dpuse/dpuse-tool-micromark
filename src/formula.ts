@@ -1,8 +1,22 @@
 type Node = NumberNode | IdentifierNode | GroupNode | BinaryNode;
-type NumberNode = { type: 'number'; value: string };
-type IdentifierNode = { type: 'identifier'; value: string };
-type GroupNode = { type: 'group'; value: Node };
-type BinaryNode = { type: 'binary'; op: string; left: Node; right: Node };
+interface NumberNode {
+    type: 'number';
+    value: string;
+}
+interface IdentifierNode {
+    type: 'identifier';
+    value: string;
+}
+interface GroupNode {
+    type: 'group';
+    value: Node;
+}
+interface BinaryNode {
+    type: 'binary';
+    op: string;
+    left: Node;
+    right: Node;
+}
 
 export function generateMathML(expression: string): string {
     const tokens = tokenizeExpression(expression);
@@ -10,8 +24,8 @@ export function generateMathML(expression: string): string {
     return `<math display="block">${toMathML(abstractSyntaxTree)}</math>`;
 }
 
-function tokenizeExpression(expr: string): string[] {
-    return expr.match(/[A-Za-z][A-Za-z ]*|\d+(?:\.\d+)?|[=()+\-*/]/g)?.map((t) => t.trim()) ?? [];
+function tokenizeExpression(expression: string): string[] {
+    return expression.match(/[A-Z][A-Z ]*|\d+(?:\.\d+)?|[=()+\-*/]/gi)?.map((t) => t.trim()) ?? [];
 }
 
 function parseExpression(tokens: string[]): Node | null {
@@ -22,12 +36,12 @@ function parseExpression(tokens: string[]): Node | null {
         if (t === undefined) return null;
 
         if (/^\d/.test(t)) return { type: 'number', value: t };
-        if (/^[A-Za-z]/.test(t)) return { type: 'identifier', value: t };
+        if (/^[A-Z]/i.test(t)) return { type: 'identifier', value: t };
 
         if (t === '(') {
-            const expr = addSub();
+            const expression = addSub();
             pos++; // consume ')'
-            return expr ? { type: 'group', value: expr } : null;
+            return expression ? { type: 'group', value: expression } : null;
         }
 
         return null;
@@ -81,7 +95,7 @@ function toMathML(node: Node | null): string {
         case 'group':
             return `<mrow><mo>(</mo>${toMathML(node.value)}<mo>)</mo></mrow>`;
 
-        case 'binary': {
+        case 'binary':
             switch (node.op) {
                 case '/':
                     return `<mfrac>${toMathML(node.left)}${toMathML(node.right)}</mfrac>`;
@@ -90,6 +104,5 @@ function toMathML(node: Node | null): string {
                 default:
                     return `<mrow>${toMathML(node.left)}<mo>${node.op}</mo>${toMathML(node.right)}</mrow>`;
             }
-        }
     }
 }

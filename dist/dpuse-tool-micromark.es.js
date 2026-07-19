@@ -2334,7 +2334,7 @@ function $t(e) {
 	return `<math display="block">${Z(tn(en(e)))}</math>`;
 }
 function en(e) {
-	return e.match(/[A-Za-z][A-Za-z ]*|\d+(?:\.\d+)?|[=()+\-*/]/g)?.map((e) => e.trim()) ?? [];
+	return e.match(/[A-Z][A-Z ]*|\d+(?:\.\d+)?|[=()+\-*/]/gi)?.map((e) => e.trim()) ?? [];
 }
 function tn(e) {
 	let t = 0;
@@ -2345,7 +2345,7 @@ function tn(e) {
 			type: "number",
 			value: n
 		};
-		if (/^[A-Za-z]/.test(n)) return {
+		if (/^[A-Z]/i.test(n)) return {
 			type: "identifier",
 			value: n
 		};
@@ -2427,7 +2427,7 @@ var nn = {
 	allowDangerousHtml: !1,
 	allowDangerousProtocol: !1,
 	extensions: [],
-	htmlExtensions: [on()]
+	htmlExtensions: [an()]
 }, $ = {
 	directiveExtensionPromise: void 0,
 	isDirectiveExtensionLoaded: !1,
@@ -2438,7 +2438,8 @@ var nn = {
 }, rn = class {
 	async highlight(e, t) {
 		if (typeof document > "u") return;
-		let { highlightElement: n } = await un(t);
+		let { highlightElement: n } = await cn();
+		un(t);
 		for (let t of e.querySelectorAll("div[class^=\"shj-lang-\"]")) (/shj-lang-(\S+)/.exec(t.className) ?? [])[1] === "javascript" && (await n(t, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(t.style, {
 			fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
 			fontSize: "14px"
@@ -2447,22 +2448,17 @@ var nn = {
 	async render(e, t) {
 		return (t?.directives ?? !1) && (!$.isDirectiveExtensionLoaded && !$.directiveExtensionPromise && ($.directiveExtensionPromise = (async () => {
 			let e = await import("./micromark-extension-directive-DufZgUDE.js");
-			Q.extensions?.push(e.directive()), Q.htmlExtensions?.push(e.directiveHtml({ note: cn })), $.isDirectiveExtensionLoaded = !0, $.directiveExtensionPromise = void 0;
+			Q.extensions?.push(e.directive()), Q.htmlExtensions?.push(e.directiveHtml({ note: sn })), $.isDirectiveExtensionLoaded = !0, $.directiveExtensionPromise = void 0;
 		})()), $.directiveExtensionPromise && await $.directiveExtensionPromise), (t?.tables ?? !1) && (!$.isTableExtensionLoaded && !$.tableExtensionPromise && ($.tableExtensionPromise = (async () => {
 			let e = await import("./micromark-extension-gfm-table-u0XhUoHG.js");
 			Q.extensions?.push(e.gfmTable()), Q.htmlExtensions?.push(e.gfmTableHtml()), $.isTableExtensionLoaded = !0, $.tableExtensionPromise = void 0;
 		})()), $.tableExtensionPromise && await $.tableExtensionPromise), Qt(e, Q);
 	}
 	setColorMode(e) {
-		an(e);
+		un(e);
 	}
 };
-function an(e) {
-	if (typeof document > "u") return;
-	let t = e === "dark" ? "theme-dark" : "theme-light";
-	for (let e of document.querySelectorAll("link[data-dynamic]")) e.disabled = e.id !== t;
-}
-function on() {
+function an() {
 	let e;
 	return {
 		enter: {
@@ -2504,39 +2500,48 @@ function on() {
 						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
 						break;
 					case "dpuse-formula":
-						a = $t(JSON.parse(n).expression);
+						try {
+							a = $t(JSON.parse(n).expression);
+						} catch {
+							a = `<div class="dpuse-formula-error">${on(n)}</div>`;
+						}
 						break;
 					case "dpuse-highcharts":
 						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
 						break;
 				}
-				else a = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${sn(n)}</div>`;
+				else a = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${on(n)}</div>`;
 				this.raw(a), e = void 0;
 			}
 		}
 	};
 }
-function sn(e) {
+function on(e) {
 	return e.replaceAll(/[&<>"']/g, (e) => nn[e]);
 }
-function cn(e) {
+function sn(e) {
 	if (e.type !== "leafDirective") return !1;
-	this.tag("<div class=\"note\">"), this.raw(sn(e.label ?? "")), this.tag("</div>");
+	this.tag("<div class=\"note\">"), this.raw(on(e.label ?? "")), this.tag("</div>");
 }
-function ln(e, t) {
-	if (typeof document > "u") return;
-	let n = URL.createObjectURL(new Blob([e], { type: "text/css" })), r = document.querySelector(`#${t}`);
-	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : r.href = n, r.disabled = !0;
-}
-async function un(e) {
+async function cn() {
 	return $.speedHighlight ? $.speedHighlight : ($.speedHighlightPromise ??= (async () => {
-		let [t, n, r] = await Promise.all([
+		let [e, t, n] = await Promise.all([
 			import("./dist-B-l9gIeO.js"),
 			import("./github-dark-BQgApYrA.js"),
 			import("./github-light-CYQxR7sx.js")
 		]);
-		return $.speedHighlight = t, ln(n.default, "theme-dark"), ln(r.default, "theme-light"), an(e), $.speedHighlightPromise = void 0, t;
+		return $.speedHighlight = e, ln(t.default, "theme-dark"), ln(n.default, "theme-light"), $.speedHighlightPromise = void 0, e;
 	})(), $.speedHighlightPromise);
+}
+function ln(e, t) {
+	if (typeof document > "u") return;
+	let n = URL.createObjectURL(new Blob([e], { type: "text/css" })), r = document.querySelector(`#${t}`);
+	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : (URL.revokeObjectURL(r.href), r.href = n), r.disabled = !0;
+}
+function un(e) {
+	if (typeof document > "u") return;
+	let t = e === "dark" ? "theme-dark" : "theme-light";
+	for (let e of document.querySelectorAll("link[data-dynamic]")) e.disabled = e.id !== t;
 }
 //#endregion
 export { rn as MicromarkTool };

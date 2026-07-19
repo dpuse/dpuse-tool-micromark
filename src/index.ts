@@ -1,30 +1,32 @@
-// Dependencies - Micromark.
+// ── External Dependencies & Registrations
+import type * as SpeedHighlight from '@speed-highlight/core';
 import type { Directive } from 'micromark-extension-directive';
 import { micromark } from 'micromark';
 import type { CompileContext, HtmlExtension, Options, Token } from 'micromark-util-types';
 
-// Dependencies - Speed Highlight.
-import type * as SpeedHighlight from '@speed-highlight/core';
-
-// Dependencies - Framework.
+// ── Local Framework
 import { generateMathML } from '@/formula';
 
-// Types/Interfaces
+// ── Types ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 export interface RenderOptions {
     directives?: boolean;
     tables?: boolean;
 }
 
-// Constants
+// ── Constants ────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 const ESCAPE_MAP: Record<'&' | '<' | '>' | '"' | "'", string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
 
-// Module Variables
+// ── State ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 const micromarkOptions: Options = {
     allowDangerousHtml: false,
     allowDangerousProtocol: false,
     extensions: [],
     htmlExtensions: [createPresenterCodeBlockHtmlExtension()]
 };
+
 const state = {
     directiveExtensionPromise: undefined as Promise<void> | undefined,
     isDirectiveExtensionLoaded: false,
@@ -34,13 +36,15 @@ const state = {
     tableExtensionPromise: undefined as Promise<void> | undefined
 };
 
-// Classes - Micromark tool.
+// ── Tools ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 export class MicromarkTool {
-    // Operations - Highligh previously rendered markdown.
+    // Actions - Highligh previously rendered markdown.
     async highlight(renderTo: HTMLElement, colorModeId: string): Promise<void> {
         if (typeof document === 'undefined') return;
 
-        const { highlightElement } = await loadSpeedHighlight(colorModeId);
+        const { highlightElement } = await loadSpeedHighlight();
+        applyColorMode(colorModeId);
 
         for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
             const lang = (/shj-lang-(\S+)/.exec((element as HTMLElement).className) ?? [])[1];
@@ -54,7 +58,7 @@ export class MicromarkTool {
         }
     }
 
-    // Operations - Render markdown.
+    // Actions - Render markdown.
     async render(markdown: string, options?: RenderOptions): Promise<string> {
         if (options?.directives ?? false) {
             if (!state.isDirectiveExtensionLoaded && !state.directiveExtensionPromise) {
@@ -83,21 +87,14 @@ export class MicromarkTool {
         return micromark(markdown, micromarkOptions);
     }
 
-    // Operations - Set color mode.
+    // Actions - Set color mode.
     setColorMode(colorModeId: string): void {
         applyColorMode(colorModeId);
     }
 }
 
-// Helper - Apply color mode.
-function applyColorMode(colorModeId: string): void {
-    if (typeof document === 'undefined') return;
+// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-    const styleId = colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
-    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) link.disabled = link.id !== styleId;
-}
-
-// Helpers - Create presenter code block.
 function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
     let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined;
     /* eslint-disable unicorn/no-this-outside-of-class --
@@ -153,11 +150,14 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
                         case 'dpuse-visual':
                             html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
                             break;
-                        case 'dpuse-formula': {
-                            const v1 = JSON.parse(rawContent) as { expression: string };
-                            html = generateMathML(v1.expression);
+                        case 'dpuse-formula':
+                            try {
+                                const v1 = JSON.parse(rawContent) as { expression: string };
+                                html = generateMathML(v1.expression);
+                            } catch {
+                                html = `<div class="dpuse-formula-error">${escapeHTML(rawContent)}</div>`;
+                            }
                             break;
-                        }
                         case 'dpuse-highcharts':
                             html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
                             break;
@@ -176,12 +176,12 @@ function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
        end of the micromark `this: CompileContext` handler shim */
 }
 
-// Helpers - Escape HTML.
 function escapeHTML(string_: string): string {
     return string_.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
 }
 
-// Helpers - Handle note directive.
+// ── Helpers - Note Directive ─────────────────────────────────────────────────────────────────────────────────────────
+
 /* eslint-disable unicorn/no-this-outside-of-class --
    micromark's `Handle` type requires handlers typed as `this: CompileContext`; see createPresenterCodeBlockHtmlExtension. */
 function handleNoteDirective(this: CompileContext, directive: Directive): boolean | undefined {
@@ -194,7 +194,28 @@ function handleNoteDirective(this: CompileContext, directive: Directive): boolea
 /* eslint-enable unicorn/no-this-outside-of-class --
    end of the micromark `this: CompileContext` handler shim */
 
-// Helpers - Inject style.
+// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+// Load Speed Highlight and inject associated themes.
+async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
+    if (state.speedHighlight) return state.speedHighlight;
+
+    state.speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
+        const [module, darkThemeCss, lightThemeCss] = await Promise.all([
+            import('@speed-highlight/core'),
+            import('@speed-highlight/core/themes/github-dark.css?raw'),
+            import('@speed-highlight/core/themes/github-light.css?raw')
+        ]);
+        state.speedHighlight = module;
+        injectStyle(darkThemeCss.default, 'theme-dark');
+        injectStyle(lightThemeCss.default, 'theme-light');
+        state.speedHighlightPromise = undefined;
+        return module;
+    })();
+
+    return state.speedHighlightPromise;
+}
+
 // Prod CSP has no 'unsafe-inline' for style-src, so the theme CSS is loaded as a blob: stylesheet instead of an
 // inline <style> element. dpuse-app's _headers allows style-src 'blob:' for this — a stable, one-time CSP
 // allowance that needs no updating if @speed-highlight/core's theme CSS changes.
@@ -212,28 +233,16 @@ function injectStyle(cssText: string, styleId: string): void {
         link.href = blobUrl;
         document.head.append(link);
     } else {
+        // eslint-disable-next-line n/no-unsupported-features/node-builtins -- browser-only path (the `typeof document` guard above returns early under Node).
+        URL.revokeObjectURL(link.href);
         link.href = blobUrl;
     }
     link.disabled = true; // This must be set after link is injected.
 }
 
-// Helpers - Load Speed Highlight and inject associated themes.
-async function loadSpeedHighlight(colorModeId: string): Promise<typeof SpeedHighlight> {
-    if (state.speedHighlight) return state.speedHighlight;
+function applyColorMode(colorModeId: string): void {
+    if (typeof document === 'undefined') return;
 
-    state.speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
-        const [module, darkThemeCss, lightThemeCss] = await Promise.all([
-            import('@speed-highlight/core'),
-            import('@speed-highlight/core/themes/github-dark.css?raw'),
-            import('@speed-highlight/core/themes/github-light.css?raw')
-        ]);
-        state.speedHighlight = module;
-        injectStyle(darkThemeCss.default, 'theme-dark');
-        injectStyle(lightThemeCss.default, 'theme-light');
-        applyColorMode(colorModeId);
-        state.speedHighlightPromise = undefined;
-        return module;
-    })();
-
-    return state.speedHighlightPromise;
+    const styleId = colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
+    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) link.disabled = link.id !== styleId;
 }
