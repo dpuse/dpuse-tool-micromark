@@ -28,6 +28,7 @@ const micromarkOptions: Options = {
 };
 
 const state = {
+    colorModeId: 'light',
     directiveExtensionPromise: undefined as Promise<void> | undefined,
     isDirectiveExtensionLoaded: false,
     isTableExtensionLoaded: false,
@@ -43,8 +44,9 @@ export class MicromarkTool {
     async highlight(renderTo: HTMLElement, colorModeId: string): Promise<void> {
         if (typeof document === 'undefined') return;
 
+        state.colorModeId = colorModeId;
         const { highlightElement } = await loadSpeedHighlight();
-        applyColorMode(colorModeId);
+        applyColorMode();
 
         for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
             const lang = (/shj-lang-(\S+)/.exec((element as HTMLElement).className) ?? [])[1];
@@ -89,7 +91,8 @@ export class MicromarkTool {
 
     // Actions - Set color mode.
     setColorMode(colorModeId: string): void {
-        applyColorMode(colorModeId);
+        state.colorModeId = colorModeId;
+        applyColorMode();
     }
 }
 
@@ -209,6 +212,7 @@ async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
         state.speedHighlight = module;
         injectStyle(darkThemeCss.default, 'theme-dark');
         injectStyle(lightThemeCss.default, 'theme-light');
+        applyColorMode();
         state.speedHighlightPromise = undefined;
         return module;
     })();
@@ -240,9 +244,9 @@ function injectStyle(cssText: string, styleId: string): void {
     link.disabled = true; // This must be set after link is injected.
 }
 
-function applyColorMode(colorModeId: string): void {
+function applyColorMode(): void {
     if (typeof document === 'undefined') return;
 
-    const styleId = colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
+    const styleId = state.colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
     for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) link.disabled = link.id !== styleId;
 }

@@ -2429,6 +2429,7 @@ var nn = {
 	extensions: [],
 	htmlExtensions: [an()]
 }, $ = {
+	colorModeId: "light",
 	directiveExtensionPromise: void 0,
 	isDirectiveExtensionLoaded: !1,
 	isTableExtensionLoaded: !1,
@@ -2438,8 +2439,9 @@ var nn = {
 }, rn = class {
 	async highlight(e, t) {
 		if (typeof document > "u") return;
+		$.colorModeId = t;
 		let { highlightElement: n } = await cn();
-		un(t);
+		un();
 		for (let t of e.querySelectorAll("div[class^=\"shj-lang-\"]")) (/shj-lang-(\S+)/.exec(t.className) ?? [])[1] === "javascript" && (await n(t, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(t.style, {
 			fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
 			fontSize: "14px"
@@ -2455,7 +2457,7 @@ var nn = {
 		})()), $.tableExtensionPromise && await $.tableExtensionPromise), Qt(e, Q);
 	}
 	setColorMode(e) {
-		un(e);
+		$.colorModeId = e, un();
 	}
 };
 function an() {
@@ -2530,7 +2532,7 @@ async function cn() {
 			import("./github-dark-BQgApYrA.js"),
 			import("./github-light-CYQxR7sx.js")
 		]);
-		return $.speedHighlight = e, ln(t.default, "theme-dark"), ln(n.default, "theme-light"), $.speedHighlightPromise = void 0, e;
+		return $.speedHighlight = e, ln(t.default, "theme-dark"), ln(n.default, "theme-light"), un(), $.speedHighlightPromise = void 0, e;
 	})(), $.speedHighlightPromise);
 }
 function ln(e, t) {
@@ -2538,10 +2540,10 @@ function ln(e, t) {
 	let n = URL.createObjectURL(new Blob([e], { type: "text/css" })), r = document.querySelector(`#${t}`);
 	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : (URL.revokeObjectURL(r.href), r.href = n), r.disabled = !0;
 }
-function un(e) {
+function un() {
 	if (typeof document > "u") return;
-	let t = e === "dark" ? "theme-dark" : "theme-light";
-	for (let e of document.querySelectorAll("link[data-dynamic]")) e.disabled = e.id !== t;
+	let e = $.colorModeId === "dark" ? "theme-dark" : "theme-light";
+	for (let t of document.querySelectorAll("link[data-dynamic]")) t.disabled = t.id !== e;
 }
 //#endregion
 export { rn as MicromarkTool };
