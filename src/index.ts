@@ -203,9 +203,11 @@ function injectStyle(cssText: string, styleId: string): void {
         style = document.createElement('style');
         style.id = styleId;
         style.dataset['dynamic'] = 'true';
+        style.innerHTML = cssText;
         document.head.append(style);
+    } else {
+        style.innerHTML = cssText;
     }
-    style.innerHTML = cssText;
     style.disabled = true; // This must be set after style is injected.
 }
 

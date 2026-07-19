@@ -2526,7 +2526,7 @@ function cn(e) {
 function ln(e, t) {
 	if (typeof document > "u") return;
 	let n = document.querySelector(`#${t}`);
-	n ?? (n = document.createElement("style"), n.id = t, n.dataset.dynamic = "true", document.head.append(n)), n.innerHTML = e, n.disabled = !0;
+	n == null ? (n = document.createElement("style"), n.id = t, n.dataset.dynamic = "true", n.innerHTML = e, document.head.append(n)) : n.innerHTML = e, n.disabled = !0;
 }
 async function un(e) {
 	return $.speedHighlight ? $.speedHighlight : ($.speedHighlightPromise ??= (async () => {
