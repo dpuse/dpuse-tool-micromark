@@ -96,7 +96,13 @@ export class MicromarkTool {
     }
 }
 
-// ── Helpers - Chart Code Block ───────────────────────────────────────────────────────────────────────────────────────
+// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+function escapeHTML(string_: string): string {
+    return string_.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
+}
+
+// ── Helpers - Code Block HTML Extension ──────────────────────────────────────────────────────────────────────────────
 
 function createCodeBlockHtmlExtension(): HtmlExtension {
     let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined;
@@ -179,10 +185,6 @@ function createCodeBlockHtmlExtension(): HtmlExtension {
        end of the micromark `this: CompileContext` handler shim */
 }
 
-function escapeHTML(string_: string): string {
-    return string_.replaceAll(/[&<>"']/g, (char) => ESCAPE_MAP[char as '&' | '<' | '>' | '"' | "'"]);
-}
-
 // ── Helpers - Note Directive ─────────────────────────────────────────────────────────────────────────────────────────
 
 /* eslint-disable unicorn/no-this-outside-of-class --
@@ -197,27 +199,15 @@ function handleNoteDirective(this: CompileContext, directive: Directive): boolea
 /* eslint-enable unicorn/no-this-outside-of-class --
    end of the micromark `this: CompileContext` handler shim */
 
-// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+// ── Helpers - Theme ──────────────────────────────────────────────────────────────────────────────────────────────────
 
-// Load Speed Highlight and inject associated themes.
-async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
-    if (state.speedHighlight) return state.speedHighlight;
+function applyColorMode(): void {
+    if (typeof document === 'undefined') return;
 
-    state.speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
-        const [module, darkThemeCss, lightThemeCss] = await Promise.all([
-            import('@speed-highlight/core'),
-            import('@speed-highlight/core/themes/github-dark.css?raw'),
-            import('@speed-highlight/core/themes/github-light.css?raw')
-        ]);
-        state.speedHighlight = module;
-        state.darkThemeCssText = darkThemeCss.default;
-        state.lightThemeCssText = lightThemeCss.default;
-        applyColorMode();
-        state.speedHighlightPromise = undefined;
-        return module;
-    })();
+    const cssText = state.colorModeId === 'dark' ? state.darkThemeCssText : state.lightThemeCssText;
+    if (cssText === undefined) return; // Not loaded yet; loadSpeedHighlight() will call applyColorMode() again once it is.
 
-    return state.speedHighlightPromise;
+    injectStyle(cssText);
 }
 
 // Prod CSP has no 'unsafe-inline' for style-src, so the theme CSS is loaded as a blob: stylesheet instead of an
@@ -245,11 +235,23 @@ function injectStyle(cssText: string): void {
     }
 }
 
-function applyColorMode(): void {
-    if (typeof document === 'undefined') return;
+// Load Speed Highlight and inject associated themes.
+async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
+    if (state.speedHighlight) return state.speedHighlight;
 
-    const cssText = state.colorModeId === 'dark' ? state.darkThemeCssText : state.lightThemeCssText;
-    if (cssText === undefined) return; // Not loaded yet; loadSpeedHighlight() will call applyColorMode() again once it is.
+    state.speedHighlightPromise ??= (async (): Promise<typeof SpeedHighlight> => {
+        const [module, darkThemeCss, lightThemeCss] = await Promise.all([
+            import('@speed-highlight/core'),
+            import('@speed-highlight/core/themes/github-dark.css?raw'),
+            import('@speed-highlight/core/themes/github-light.css?raw')
+        ]);
+        state.speedHighlight = module;
+        state.darkThemeCssText = darkThemeCss.default;
+        state.lightThemeCssText = lightThemeCss.default;
+        applyColorMode();
+        state.speedHighlightPromise = undefined;
+        return module;
+    })();
 
-    injectStyle(cssText);
+    return state.speedHighlightPromise;
 }

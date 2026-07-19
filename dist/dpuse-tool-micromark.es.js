@@ -2423,7 +2423,7 @@ var tn = {
 	">": "&gt;",
 	"\"": "&quot;",
 	"'": "&#039;"
-}, nn = an(), $ = {
+}, nn = on(), $ = {
 	colorModeId: "light",
 	darkThemeCssText: void 0,
 	directiveExtensionPromise: void 0,
@@ -2435,8 +2435,8 @@ var tn = {
 	async highlight(e, t) {
 		if (typeof document > "u") return;
 		$.colorModeId = t;
-		let { highlightElement: n } = await cn();
-		console.log(4444, t), un();
+		let { highlightElement: n } = await un();
+		cn();
 		for (let t of e.querySelectorAll("div[class^=\"shj-lang-\"]")) (/shj-lang-(\S+)/.exec(t.className) ?? [])[1] === "javascript" && (await n(t, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(t.style, {
 			fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
 			fontSize: "14px"
@@ -2474,10 +2474,13 @@ var tn = {
 		});
 	}
 	setColorMode(e) {
-		console.log(333, e), $.colorModeId = e, un();
+		$.colorModeId = e, cn();
 	}
 };
-function an() {
+function an(e) {
+	return e.replaceAll(/[&<>"']/g, (e) => tn[e]);
+}
+function on() {
 	let e;
 	return {
 		enter: {
@@ -2522,46 +2525,42 @@ function an() {
 						try {
 							a = Qt(JSON.parse(n).expression);
 						} catch {
-							a = `<div class="dpuse-formula-error">${on(n)}</div>`;
+							a = `<div class="dpuse-formula-error">${an(n)}</div>`;
 						}
 						break;
 					case "dpuse-highcharts":
 						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
 						break;
 				}
-				else a = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${on(n)}</div>`;
+				else a = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${an(n)}</div>`;
 				this.raw(a), e = void 0;
 			}
 		}
 	};
 }
-function on(e) {
-	return e.replaceAll(/[&<>"']/g, (e) => tn[e]);
-}
 function sn(e) {
 	if (e.type !== "leafDirective") return !1;
-	this.tag("<div class=\"note\">"), this.raw(on(e.label ?? "")), this.tag("</div>");
+	this.tag("<div class=\"note\">"), this.raw(an(e.label ?? "")), this.tag("</div>");
 }
-async function cn() {
-	return $.speedHighlight ? $.speedHighlight : ($.speedHighlightPromise ??= (async () => {
-		let [e, t, n] = await Promise.all([
-			import("./dist-B-l9gIeO.js"),
-			import("./github-dark-BQgApYrA.js"),
-			import("./github-light-CYQxR7sx.js")
-		]);
-		return $.speedHighlight = e, $.darkThemeCssText = t.default, $.lightThemeCssText = n.default, un(), $.speedHighlightPromise = void 0, e;
-	})(), $.speedHighlightPromise);
+function cn() {
+	if (typeof document > "u") return;
+	let e = $.colorModeId === "dark" ? $.darkThemeCssText : $.lightThemeCssText;
+	e !== void 0 && ln(e);
 }
 function ln(e) {
 	if (typeof document > "u") return;
 	let t = URL.createObjectURL(new Blob([e], { type: "text/css" })), n = document.querySelector("#dpuse-code-theme"), r = n?.href;
 	n ?? (n = document.createElement("link"), n.id = "dpuse-code-theme", n.rel = "stylesheet", document.head.append(n)), n.href = t, r && URL.revokeObjectURL(r);
 }
-function un() {
-	if (console.log(5555), typeof document > "u") return;
-	console.log(7777);
-	let e = $.colorModeId === "dark" ? $.darkThemeCssText : $.lightThemeCssText;
-	console.log(8888, $.colorModeId, e !== void 0), e !== void 0 && (ln(e), console.log(9999, document.querySelector("#dpuse-code-theme")));
+async function un() {
+	return $.speedHighlight ? $.speedHighlight : ($.speedHighlightPromise ??= (async () => {
+		let [e, t, n] = await Promise.all([
+			import("./dist-B-l9gIeO.js"),
+			import("./github-dark-BQgApYrA.js"),
+			import("./github-light-CYQxR7sx.js")
+		]);
+		return $.speedHighlight = e, $.darkThemeCssText = t.default, $.lightThemeCssText = n.default, cn(), $.speedHighlightPromise = void 0, e;
+	})(), $.speedHighlightPromise);
 }
 //#endregion
 export { rn as MicromarkTool };
