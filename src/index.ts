@@ -2,7 +2,7 @@
 import type * as SpeedHighlight from '@speed-highlight/core';
 import type { Directive } from 'micromark-extension-directive';
 import { micromark } from 'micromark';
-import type { CompileContext, HtmlExtension, Options, Token } from 'micromark-util-types';
+import type { CompileContext, Extension, HtmlExtension, Token } from 'micromark-util-types';
 
 // ── Local Framework
 import { generateMathML } from '@/formula';
@@ -20,23 +20,21 @@ const ESCAPE_MAP: Record<'&' | '<' | '>' | '"' | "'", string> = { '&': '&amp;', 
 
 // ── State ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-const micromarkOptions: Options = {
-    allowDangerousHtml: false,
-    allowDangerousProtocol: false,
-    extensions: [],
-    htmlExtensions: [createPresenterCodeBlockHtmlExtension()]
-};
+const codeBlockHtmlExtension = createPresenterCodeBlockHtmlExtension();
+
+interface LoadedExtension {
+    extension: Extension;
+    htmlExtension: HtmlExtension;
+}
 
 const state = {
     colorModeId: 'light',
     darkThemeCssText: undefined as string | undefined,
-    directiveExtensionPromise: undefined as Promise<void> | undefined,
-    isDirectiveExtensionLoaded: false,
-    isTableExtensionLoaded: false,
+    directiveExtensionPromise: undefined as Promise<LoadedExtension> | undefined,
     lightThemeCssText: undefined as string | undefined,
     speedHighlight: undefined as typeof SpeedHighlight | undefined,
     speedHighlightPromise: undefined as Promise<typeof SpeedHighlight> | undefined,
-    tableExtensionPromise: undefined as Promise<void> | undefined
+    tableExtensionPromise: undefined as Promise<LoadedExtension> | undefined
 };
 
 // ── Tools ────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -65,31 +63,29 @@ export class MicromarkTool {
 
     // Actions - Render markdown.
     async render(markdown: string, options?: RenderOptions): Promise<string> {
+        const extensions: Extension[] = [];
+        const htmlExtensions: HtmlExtension[] = [codeBlockHtmlExtension];
+
         if (options?.directives ?? false) {
-            if (!state.isDirectiveExtensionLoaded && !state.directiveExtensionPromise) {
-                state.directiveExtensionPromise = (async (): Promise<void> => {
-                    const module = await import('micromark-extension-directive');
-                    micromarkOptions.extensions?.push(module.directive());
-                    micromarkOptions.htmlExtensions?.push(module.directiveHtml({ note: handleNoteDirective }));
-                    state.isDirectiveExtensionLoaded = true;
-                    state.directiveExtensionPromise = undefined;
-                })();
-            }
-            if (state.directiveExtensionPromise) await state.directiveExtensionPromise;
+            state.directiveExtensionPromise ??= (async (): Promise<LoadedExtension> => {
+                const module = await import('micromark-extension-directive');
+                return { extension: module.directive(), htmlExtension: module.directiveHtml({ note: handleNoteDirective }) };
+            })();
+            const { extension, htmlExtension } = await state.directiveExtensionPromise;
+            extensions.push(extension);
+            htmlExtensions.push(htmlExtension);
         }
         if (options?.tables ?? false) {
-            if (!state.isTableExtensionLoaded && !state.tableExtensionPromise) {
-                state.tableExtensionPromise = (async (): Promise<void> => {
-                    const module = await import('micromark-extension-gfm-table');
-                    micromarkOptions.extensions?.push(module.gfmTable());
-                    micromarkOptions.htmlExtensions?.push(module.gfmTableHtml());
-                    state.isTableExtensionLoaded = true;
-                    state.tableExtensionPromise = undefined;
-                })();
-            }
-            if (state.tableExtensionPromise) await state.tableExtensionPromise;
+            state.tableExtensionPromise ??= (async (): Promise<LoadedExtension> => {
+                const module = await import('micromark-extension-gfm-table');
+                return { extension: module.gfmTable(), htmlExtension: module.gfmTableHtml() };
+            })();
+            const { extension, htmlExtension } = await state.tableExtensionPromise;
+            extensions.push(extension);
+            htmlExtensions.push(htmlExtension);
         }
-        return micromark(markdown, micromarkOptions);
+
+        return micromark(markdown, { allowDangerousHtml: false, allowDangerousProtocol: false, extensions, htmlExtensions });
     }
 
     // Actions - Set color mode.
