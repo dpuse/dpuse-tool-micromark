@@ -94,7 +94,7 @@ function applyColorMode(colorModeId: string): void {
     if (typeof document === 'undefined') return;
 
     const styleId = colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
-    for (const style of document.querySelectorAll<HTMLStyleElement>('style[data-dynamic]')) style.disabled = style.id !== styleId;
+    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) link.disabled = link.id !== styleId;
 }
 
 // Helpers - Create presenter code block.
@@ -188,27 +188,33 @@ function handleNoteDirective(this: CompileContext, directive: Directive): boolea
     if (directive.type !== 'leafDirective') return false;
 
     this.tag('<div class="note">');
-    this.raw(directive.label ?? '');
+    this.raw(escapeHTML(directive.label ?? ''));
     this.tag('</div>');
 }
 /* eslint-enable unicorn/no-this-outside-of-class --
    end of the micromark `this: CompileContext` handler shim */
 
 // Helpers - Inject style.
+// Prod CSP has no 'unsafe-inline' for style-src, so the theme CSS is loaded as a blob: stylesheet instead of an
+// inline <style> element. dpuse-app's _headers allows style-src 'blob:' for this — a stable, one-time CSP
+// allowance that needs no updating if @speed-highlight/core's theme CSS changes.
 function injectStyle(cssText: string, styleId: string): void {
     if (typeof document === 'undefined') return;
 
-    let style = document.querySelector<HTMLStyleElement>(`#${styleId}`);
-    if (style == null) {
-        style = document.createElement('style');
-        style.id = styleId;
-        style.dataset['dynamic'] = 'true';
-        style.innerHTML = cssText;
-        document.head.append(style);
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins -- browser-only path (the `typeof document` guard above returns early under Node).
+    const blobUrl = URL.createObjectURL(new Blob([cssText], { type: 'text/css' }));
+    let link = document.querySelector<HTMLLinkElement>(`#${styleId}`);
+    if (link == null) {
+        link = document.createElement('link');
+        link.id = styleId;
+        link.rel = 'stylesheet';
+        link.dataset['dynamic'] = 'true';
+        link.href = blobUrl;
+        document.head.append(link);
     } else {
-        style.innerHTML = cssText;
+        link.href = blobUrl;
     }
-    style.disabled = true; // This must be set after style is injected.
+    link.disabled = true; // This must be set after link is injected.
 }
 
 // Helpers - Load Speed Highlight and inject associated themes.

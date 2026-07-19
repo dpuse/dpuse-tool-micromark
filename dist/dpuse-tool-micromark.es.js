@@ -2460,7 +2460,7 @@ var nn = {
 function an(e) {
 	if (typeof document > "u") return;
 	let t = e === "dark" ? "theme-dark" : "theme-light";
-	for (let e of document.querySelectorAll("style[data-dynamic]")) e.disabled = e.id !== t;
+	for (let e of document.querySelectorAll("link[data-dynamic]")) e.disabled = e.id !== t;
 }
 function on() {
 	let e;
@@ -2521,12 +2521,12 @@ function sn(e) {
 }
 function cn(e) {
 	if (e.type !== "leafDirective") return !1;
-	this.tag("<div class=\"note\">"), this.raw(e.label ?? ""), this.tag("</div>");
+	this.tag("<div class=\"note\">"), this.raw(sn(e.label ?? "")), this.tag("</div>");
 }
 function ln(e, t) {
 	if (typeof document > "u") return;
-	let n = document.querySelector(`#${t}`);
-	n == null ? (n = document.createElement("style"), n.id = t, n.dataset.dynamic = "true", n.innerHTML = e, document.head.append(n)) : n.innerHTML = e, n.disabled = !0;
+	let n = URL.createObjectURL(new Blob([e], { type: "text/css" })), r = document.querySelector(`#${t}`);
+	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : r.href = n, r.disabled = !0;
 }
 async function un(e) {
 	return $.speedHighlight ? $.speedHighlight : ($.speedHighlightPromise ??= (async () => {
