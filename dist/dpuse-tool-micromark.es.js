@@ -2430,9 +2430,11 @@ var nn = {
 	htmlExtensions: [an()]
 }, $ = {
 	colorModeId: "light",
+	darkThemeCssText: void 0,
 	directiveExtensionPromise: void 0,
 	isDirectiveExtensionLoaded: !1,
 	isTableExtensionLoaded: !1,
+	lightThemeCssText: void 0,
 	speedHighlight: void 0,
 	speedHighlightPromise: void 0,
 	tableExtensionPromise: void 0
@@ -2532,20 +2534,19 @@ async function cn() {
 			import("./github-dark-BQgApYrA.js"),
 			import("./github-light-CYQxR7sx.js")
 		]);
-		return $.speedHighlight = e, ln(t.default, "theme-dark"), ln(n.default, "theme-light"), un(), $.speedHighlightPromise = void 0, e;
+		return $.speedHighlight = e, $.darkThemeCssText = t.default, $.lightThemeCssText = n.default, un(), $.speedHighlightPromise = void 0, e;
 	})(), $.speedHighlightPromise);
 }
-function ln(e, t) {
+function ln(e) {
 	if (typeof document > "u") return;
-	let n = URL.createObjectURL(new Blob([e], { type: "text/css" })), r = document.querySelector(`#${t}`);
-	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : (URL.revokeObjectURL(r.href), r.href = n), r.disabled = !0;
+	let t = URL.createObjectURL(new Blob([e], { type: "text/css" })), n = document.querySelector("#dpuse-code-theme"), r = n?.href;
+	n ?? (n = document.createElement("link"), n.id = "dpuse-code-theme", n.rel = "stylesheet", document.head.append(n)), n.href = t, r && URL.revokeObjectURL(r);
 }
 function un() {
 	if (console.log(5555), typeof document > "u") return;
 	console.log(7777);
-	let e = $.colorModeId === "dark" ? "theme-dark" : "theme-light";
-	console.log(8888, e);
-	for (let t of document.querySelectorAll("link[data-dynamic]")) console.log(9999, t), t.disabled = t.id !== e;
+	let e = $.colorModeId === "dark" ? $.darkThemeCssText : $.lightThemeCssText;
+	console.log(8888, $.colorModeId, e !== void 0), e !== void 0 && (ln(e), console.log(9999, document.querySelector("#dpuse-code-theme")));
 }
 //#endregion
 export { rn as MicromarkTool };

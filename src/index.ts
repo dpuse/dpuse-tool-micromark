@@ -29,9 +29,11 @@ const micromarkOptions: Options = {
 
 const state = {
     colorModeId: 'light',
+    darkThemeCssText: undefined as string | undefined,
     directiveExtensionPromise: undefined as Promise<void> | undefined,
     isDirectiveExtensionLoaded: false,
     isTableExtensionLoaded: false,
+    lightThemeCssText: undefined as string | undefined,
     speedHighlight: undefined as typeof SpeedHighlight | undefined,
     speedHighlightPromise: undefined as Promise<typeof SpeedHighlight> | undefined,
     tableExtensionPromise: undefined as Promise<void> | undefined
@@ -212,8 +214,8 @@ async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
             import('@speed-highlight/core/themes/github-light.css?raw')
         ]);
         state.speedHighlight = module;
-        injectStyle(darkThemeCss.default, 'theme-dark');
-        injectStyle(lightThemeCss.default, 'theme-light');
+        state.darkThemeCssText = darkThemeCss.default;
+        state.lightThemeCssText = lightThemeCss.default;
         applyColorMode();
         state.speedHighlightPromise = undefined;
         return module;
@@ -225,25 +227,26 @@ async function loadSpeedHighlight(): Promise<typeof SpeedHighlight> {
 // Prod CSP has no 'unsafe-inline' for style-src, so the theme CSS is loaded as a blob: stylesheet instead of an
 // inline <style> element. dpuse-app's _headers allows style-src 'blob:' for this — a stable, one-time CSP
 // allowance that needs no updating if @speed-highlight/core's theme CSS changes.
-function injectStyle(cssText: string, styleId: string): void {
+// A single link element is swapped between the dark/light blob URLs, rather than two links toggled via `disabled`,
+// so there is never a moment where neither or both themes are the one actually applied.
+function injectStyle(cssText: string): void {
     if (typeof document === 'undefined') return;
 
     // eslint-disable-next-line n/no-unsupported-features/node-builtins -- browser-only path (the `typeof document` guard above returns early under Node).
     const blobUrl = URL.createObjectURL(new Blob([cssText], { type: 'text/css' }));
-    let link = document.querySelector<HTMLLinkElement>(`#${styleId}`);
+    let link = document.querySelector<HTMLLinkElement>('#dpuse-code-theme');
+    const previousBlobUrl = link?.href;
     if (link == null) {
         link = document.createElement('link');
-        link.id = styleId;
+        link.id = 'dpuse-code-theme';
         link.rel = 'stylesheet';
-        link.dataset['dynamic'] = 'true';
-        link.href = blobUrl;
         document.head.append(link);
-    } else {
-        // eslint-disable-next-line n/no-unsupported-features/node-builtins -- browser-only path (the `typeof document` guard above returns early under Node).
-        URL.revokeObjectURL(link.href);
-        link.href = blobUrl;
     }
-    link.disabled = true; // This must be set after link is injected.
+    link.href = blobUrl;
+    if (previousBlobUrl) {
+        // eslint-disable-next-line n/no-unsupported-features/node-builtins -- browser-only path (the `typeof document` guard above returns early under Node).
+        URL.revokeObjectURL(previousBlobUrl);
+    }
 }
 
 function applyColorMode(): void {
@@ -251,10 +254,10 @@ function applyColorMode(): void {
     if (typeof document === 'undefined') return;
 
     console.log(7777);
-    const styleId = state.colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
-    console.log(8888, styleId);
-    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) {
-        console.log(9999, link);
-        link.disabled = link.id !== styleId;
-    }
+    const cssText = state.colorModeId === 'dark' ? state.darkThemeCssText : state.lightThemeCssText;
+    console.log(8888, state.colorModeId, cssText !== undefined);
+    if (cssText === undefined) return; // Not loaded yet; loadSpeedHighlight() will call applyColorMode() again once it is.
+
+    injectStyle(cssText);
+    console.log(9999, document.querySelector('#dpuse-code-theme'));
 }
