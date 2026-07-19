@@ -2331,7 +2331,8 @@ function Zt(e, t, n) {
 //#endregion
 //#region src/formula.ts
 function Qt(e) {
-	return `<math display="block">${Q(en($t(e)))}</math>`;
+	let t = $t(e);
+	return t.length === 0 ? "<math display=\"block\"></math>" : `<math display="block">${Q(en(t))}</math>`;
 }
 function $t(e) {
 	return e.match(/[A-Z][A-Z ]*|\d+(?:\.\d+)?|[=()+\-*/]/gi)?.map((e) => e.trim()) ?? [];
@@ -2339,9 +2340,9 @@ function $t(e) {
 function en(e) {
 	let t = 0;
 	function n() {
-		let n = e[t++];
+		let n = e[t];
 		if (n === void 0) return null;
-		if (/^\d/.test(n)) return {
+		if (t++, /^\d/.test(n)) return {
 			type: "number",
 			value: n
 		};
@@ -2350,19 +2351,22 @@ function en(e) {
 			value: n
 		};
 		if (n === "(") {
-			let e = i();
-			return t++, e ? {
+			let n = i();
+			if (!n || e[t] !== ")") throw Error("Invalid formula: expected ')' to close '('");
+			return t++, {
 				type: "group",
-				value: e
-			} : null;
+				value: n
+			};
 		}
-		return null;
+		return t--, null;
 	}
 	function r() {
 		let r = n();
 		for (; r && (e[t] === "*" || e[t] === "/");) {
-			let i = e[t++] ?? "?", a = n();
-			if (!a) break;
+			let i = e[t];
+			t++;
+			let a = n();
+			if (!a) throw Error(`Invalid formula: expected operand after '${i}'`);
 			r = {
 				type: "binary",
 				op: i,
@@ -2375,8 +2379,10 @@ function en(e) {
 	function i() {
 		let n = r();
 		for (; n && (e[t] === "+" || e[t] === "-");) {
-			let i = e[t++] ?? "?", a = r();
-			if (!a) break;
+			let i = e[t];
+			t++;
+			let a = r();
+			if (!a) throw Error(`Invalid formula: expected operand after '${i}'`);
 			n = {
 				type: "binary",
 				op: i,
@@ -2388,22 +2394,24 @@ function en(e) {
 	}
 	function a() {
 		let n = i();
-		if (e[t] === "=") {
+		if (n && e[t] === "=") {
 			t++;
 			let e = a();
-			e && (n = {
+			if (!e) throw Error("Invalid formula: expected expression after '='");
+			n = {
 				type: "binary",
 				op: "=",
 				left: n,
 				right: e
-			});
+			};
 		}
 		return n;
 	}
-	return a();
+	let o = a();
+	if (!o || t < e.length) throw Error(`Invalid formula: unexpected token '${e[t] ?? "end of formula"}'`);
+	return o;
 }
 function Q(e) {
-	if (!e) return "";
 	switch (e.type) {
 		case "number": return `<mn>${e.value}</mn>`;
 		case "identifier": return `<mi>${e.value}</mi>`;
