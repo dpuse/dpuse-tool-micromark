@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "0.14.0",
-    "generatedAt": "2026-07-19T11:36:40.345Z",
+    "generatedAt": "2026-07-19T12:08:43.134Z",
     "integration": "vite",
     "sources": false,
     "gzip": false,
@@ -21,9 +21,9 @@
       "name": "[unassigned]",
       "type": "other",
       "format": "other",
-      "uncompressed": 8649,
+      "uncompressed": 8628,
       "gzip": 0,
-      "brotli": 694,
+      "brotli": 693,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -108,9 +108,9 @@
       "kind": "asset",
       "name": "dist/dpuse-tool-micromark.es.js",
       "type": "script",
-      "uncompressed": 75576,
+      "uncompressed": 75457,
       "gzip": 0,
-      "brotli": 16387
+      "brotli": 16381
     },
     {
       "kind": "asset",
@@ -671,7 +671,7 @@
       "format": "esm",
       "uncompressed": 1340,
       "gzip": 0,
-      "brotli": 366,
+      "brotli": 367,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -974,7 +974,7 @@
       "format": "esm",
       "uncompressed": 726,
       "gzip": 0,
-      "brotli": 201,
+      "brotli": 202,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1059,7 +1059,7 @@
       "format": "esm",
       "uncompressed": 690,
       "gzip": 0,
-      "brotli": 192,
+      "brotli": 193,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1144,7 +1144,7 @@
       "format": "esm",
       "uncompressed": 156,
       "gzip": 0,
-      "brotli": 75,
+      "brotli": 76,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1178,7 +1178,7 @@
       "format": "esm",
       "uncompressed": 2227,
       "gzip": 0,
-      "brotli": 580,
+      "brotli": 581,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1195,7 +1195,7 @@
       "format": "esm",
       "uncompressed": 1769,
       "gzip": 0,
-      "brotli": 359,
+      "brotli": 360,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1212,7 +1212,7 @@
       "format": "esm",
       "uncompressed": 127,
       "gzip": 0,
-      "brotli": 66,
+      "brotli": 67,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1229,7 +1229,7 @@
       "format": "esm",
       "uncompressed": 8201,
       "gzip": 0,
-      "brotli": 1581,
+      "brotli": 1582,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1263,7 +1263,7 @@
       "format": "esm",
       "uncompressed": 3713,
       "gzip": 0,
-      "brotli": 926,
+      "brotli": 927,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1297,7 +1297,7 @@
       "format": "esm",
       "uncompressed": 2670,
       "gzip": 0,
-      "brotli": 622,
+      "brotli": 623,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1331,7 +1331,7 @@
       "format": "esm",
       "uncompressed": 1893,
       "gzip": 0,
-      "brotli": 548,
+      "brotli": 549,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1431,16 +1431,16 @@
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 5993
+      "uncompressed": 5746
     },
     {
       "kind": "chunk",
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 3932,
+      "uncompressed": 3834,
       "gzip": 0,
-      "brotli": 947,
+      "brotli": 934,
       "parent": "dist/dpuse-tool-micromark.es.js"
     }
   ],

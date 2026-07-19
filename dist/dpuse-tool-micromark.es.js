@@ -2487,8 +2487,7 @@ function on() {
 			codeFenced() {
 				this.buffer(), e = {
 					codeContent: [],
-					lang: "",
-					meta: ""
+					lang: ""
 				};
 			},
 			codeFencedFence() {},
@@ -2496,9 +2495,7 @@ function on() {
 			codeFencedFenceInfo(t) {
 				e !== void 0 && (e.lang = this.sliceSerialize(t));
 			},
-			codeFencedFenceMeta(t) {
-				e !== void 0 && (e.meta = this.sliceSerialize(t));
-			},
+			codeFencedFenceMeta() {},
 			codeFlowValue(t) {
 				e !== void 0 && e.codeContent.push(this.sliceSerialize(t));
 			}
@@ -2512,28 +2509,27 @@ function on() {
 			codeFenced() {
 				let t = e ?? {
 					codeContent: [],
-					lang: "",
-					meta: ""
+					lang: ""
 				};
 				this.resume();
-				let n = t.codeContent.join("\n"), r = t.lang || "plain", i = t.meta || "", a = "";
-				if (r === "json") switch (i) {
-					case "dpuse-visual":
-						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
+				let n = t.codeContent.join("\n"), r = t.lang || "plain", i = "";
+				switch (r) {
+					case "visual":
+						i = `<div class="dpuse-visual" data-options="${encodeURIComponent(n)}"></div>`;
 						break;
-					case "dpuse-formula":
+					case "formula":
 						try {
-							a = Qt(JSON.parse(n).expression);
+							i = Qt(JSON.parse(n).expression);
 						} catch {
-							a = `<div class="dpuse-formula-error">${an(n)}</div>`;
+							i = `<div class="dpuse-formula-error">${an(n)}</div>`;
 						}
 						break;
-					case "dpuse-highcharts":
-						a = `<div class="${i}" data-options="${encodeURIComponent(n)}"></div>`;
+					case "highcharts":
+						i = `<div class="dpuse-highcharts" data-options="${encodeURIComponent(n)}"></div>`;
 						break;
+					default: i = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${an(n)}</div>`;
 				}
-				else a = `<div class="shj-lang-${r.replaceAll(/[^\w-]/g, "")}">${an(n)}</div>`;
-				this.raw(a), e = void 0;
+				this.raw(i), e = void 0;
 			}
 		}
 	};

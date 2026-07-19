@@ -43,6 +43,9 @@ export class MicromarkTool {
     // ── Actions ──────────────────────────────────────────────────────────────────────────────────────────────────────
 
     // Highligh previously rendered markdown.
+    // colorModeId is accepted as a parameter (rather than relying solely on setColorMode() having been called
+    // already) because this tool instance can be created after the caller's color mode is known, so state's
+    // 'light' default may be stale until it is explicitly given the current value here.
     async highlight(renderTo: HTMLElement, colorModeId: string): Promise<void> {
         if (typeof document === 'undefined') return;
 
@@ -90,6 +93,8 @@ export class MicromarkTool {
     }
 
     // Set color mode.
+    // Lets a caller update already-highlighted code blocks' theme (e.g. on a theme toggle) without a full
+    // render()/highlight() pass; see highlight() above for why colorModeId isn't just read from state instead.
     setColorMode(colorModeId: string): void {
         state.colorModeId = colorModeId;
         applyColorMode();
@@ -105,7 +110,7 @@ function escapeHTML(string_: string): string {
 // ── Helpers - Code Block HTML Extension ──────────────────────────────────────────────────────────────────────────────
 
 function createCodeBlockHtmlExtension(): HtmlExtension {
-    let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined;
+    let currentBlockData: { codeContent: string[]; lang: string } | undefined;
     /* eslint-disable unicorn/no-this-outside-of-class --
        micromark's `Handle` type requires handlers typed as `this: CompileContext`; the CompileContext is passed via
        dynamic `this` binding (micromark calls `handler.call(compileContext, token)`), not through a class. */
@@ -113,7 +118,7 @@ function createCodeBlockHtmlExtension(): HtmlExtension {
         enter: {
             codeFenced(this: CompileContext): undefined /* The entire fenced code block starts. */ {
                 this.buffer();
-                currentBlockData = { codeContent: [], lang: '', meta: '' };
+                currentBlockData = { codeContent: [], lang: '' };
             },
             codeFencedFence(): undefined /* The opening fence line. */ {
                 /* empty */
@@ -121,11 +126,11 @@ function createCodeBlockHtmlExtension(): HtmlExtension {
             codeFencedFenceSequence(): undefined /* The opening fence characters (```). */ {
                 /* empty */
             },
-            codeFencedFenceInfo(this: CompileContext, token: Token): undefined /* The language identifier (json, javascript...). */ {
+            codeFencedFenceInfo(this: CompileContext, token: Token): undefined /* The language identifier (visual, formula, highcharts, javascript...). */ {
                 if (currentBlockData !== undefined) currentBlockData.lang = this.sliceSerialize(token);
             },
-            codeFencedFenceMeta(this: CompileContext, token: Token): undefined /* The metadata after the language identifier (dpuse-visual). */ {
-                if (currentBlockData !== undefined) currentBlockData.meta = this.sliceSerialize(token);
+            codeFencedFenceMeta(): undefined /* Any text after the language identifier; unused, but still suppressed like the other fence tokens below. */ {
+                /* empty */
             },
             codeFlowValue(this: CompileContext, token: Token): undefined /* Each line/chunk of actual code content. */ {
                 if (currentBlockData !== undefined) currentBlockData.codeContent.push(this.sliceSerialize(token));
@@ -148,33 +153,32 @@ function createCodeBlockHtmlExtension(): HtmlExtension {
                 /* empty */
             },
             codeFenced(this: CompileContext): undefined /* The entire code block is complete, replacement can happen now. */ {
-                const blockData = currentBlockData ?? { codeContent: [], lang: '', meta: '' };
+                const blockData = currentBlockData ?? { codeContent: [], lang: '' };
                 this.resume(); // Discard the captured code text.
                 const rawContent = blockData.codeContent.join('\n');
                 const language = blockData.lang || 'plain';
-                const metaAttribute = blockData.meta || '';
                 let html = '';
-                if (language === 'json') {
-                    switch (metaAttribute) {
-                        case 'dpuse-visual':
-                            html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
-                            break;
-                        case 'dpuse-formula':
-                            try {
-                                const v1 = JSON.parse(rawContent) as { expression: string };
-                                html = generateMathML(v1.expression);
-                            } catch {
-                                html = `<div class="dpuse-formula-error">${escapeHTML(rawContent)}</div>`;
-                            }
-                            break;
-                        case 'dpuse-highcharts':
-                            html = `<div class="${metaAttribute}" data-options="${encodeURIComponent(rawContent)}"></div>`;
-                            break;
-                        // No default
+                // visual/formula/highcharts are top-level block types (```visual, not ```json dpuse-visual); every
+                // other language, including plain json, falls through to default syntax highlighting.
+                switch (language) {
+                    case 'visual':
+                        html = `<div class="dpuse-visual" data-options="${encodeURIComponent(rawContent)}"></div>`;
+                        break;
+                    case 'formula':
+                        try {
+                            const v1 = JSON.parse(rawContent) as { expression: string };
+                            html = generateMathML(v1.expression);
+                        } catch {
+                            html = `<div class="dpuse-formula-error">${escapeHTML(rawContent)}</div>`;
+                        }
+                        break;
+                    case 'highcharts':
+                        html = `<div class="dpuse-highcharts" data-options="${encodeURIComponent(rawContent)}"></div>`;
+                        break;
+                    default: {
+                        const safeLang = language.replaceAll(/[^\w-]/g, '');
+                        html = `<div class="shj-lang-${safeLang}">${escapeHTML(rawContent)}</div>`;
                     }
-                } else {
-                    const safeLang = language.replaceAll(/[^\w-]/g, '');
-                    html = `<div class="shj-lang-${safeLang}">${escapeHTML(rawContent)}</div>`;
                 }
                 this.raw(html);
                 currentBlockData = undefined;
