@@ -46,6 +46,7 @@ export class MicromarkTool {
 
         state.colorModeId = colorModeId;
         const { highlightElement } = await loadSpeedHighlight();
+        console.log(4444, colorModeId);
         applyColorMode();
 
         for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
@@ -91,6 +92,7 @@ export class MicromarkTool {
 
     // Actions - Set color mode.
     setColorMode(colorModeId: string): void {
+        console.log(333, colorModeId);
         state.colorModeId = colorModeId;
         applyColorMode();
     }

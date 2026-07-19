@@ -2441,7 +2441,7 @@ var nn = {
 		if (typeof document > "u") return;
 		$.colorModeId = t;
 		let { highlightElement: n } = await cn();
-		un();
+		console.log(4444, t), un();
 		for (let t of e.querySelectorAll("div[class^=\"shj-lang-\"]")) (/shj-lang-(\S+)/.exec(t.className) ?? [])[1] === "javascript" && (await n(t, "js", "multiline", { hideLineNumbers: !0 }), Object.assign(t.style, {
 			fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, Liberation Mono, monospace",
 			fontSize: "14px"
@@ -2457,7 +2457,7 @@ var nn = {
 		})()), $.tableExtensionPromise && await $.tableExtensionPromise), Qt(e, Q);
 	}
 	setColorMode(e) {
-		$.colorModeId = e, un();
+		console.log(333, e), $.colorModeId = e, un();
 	}
 };
 function an() {
