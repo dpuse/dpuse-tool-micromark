@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "0.14.0",
-    "generatedAt": "2026-07-19T10:42:54.174Z",
+    "generatedAt": "2026-07-19T10:46:25.275Z",
     "integration": "vite",
     "sources": false,
     "gzip": false,
@@ -21,7 +21,7 @@
       "name": "[unassigned]",
       "type": "other",
       "format": "other",
-      "uncompressed": 8577,
+      "uncompressed": 8579,
       "gzip": 0,
       "brotli": 697,
       "parent": "dist/dpuse-tool-micromark.es.js"
@@ -108,9 +108,9 @@
       "kind": "asset",
       "name": "dist/dpuse-tool-micromark.es.js",
       "type": "script",
-      "uncompressed": 75816,
+      "uncompressed": 75900,
       "gzip": 0,
-      "brotli": 16467
+      "brotli": 16487
     },
     {
       "kind": "asset",
@@ -1110,7 +1110,7 @@
       "format": "esm",
       "uncompressed": 442,
       "gzip": 0,
-      "brotli": 170,
+      "brotli": 169,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1297,7 +1297,7 @@
       "format": "esm",
       "uncompressed": 2670,
       "gzip": 0,
-      "brotli": 625,
+      "brotli": 624,
       "parent": "dist/dpuse-tool-micromark.es.js"
     },
     {
@@ -1431,16 +1431,16 @@
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 6325
+      "uncompressed": 6428
     },
     {
       "kind": "chunk",
       "name": "src/index.ts",
       "type": "script",
       "format": "esm",
-      "uncompressed": 4239,
+      "uncompressed": 4321,
       "gzip": 0,
-      "brotli": 1006,
+      "brotli": 1029,
       "parent": "dist/dpuse-tool-micromark.es.js"
     }
   ],

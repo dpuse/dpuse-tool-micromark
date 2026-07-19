@@ -247,8 +247,14 @@ function injectStyle(cssText: string, styleId: string): void {
 }
 
 function applyColorMode(): void {
+    console.log(5555);
     if (typeof document === 'undefined') return;
 
+    console.log(7777);
     const styleId = state.colorModeId === 'dark' ? 'theme-dark' : 'theme-light';
-    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) link.disabled = link.id !== styleId;
+    console.log(8888, styleId);
+    for (const link of document.querySelectorAll<HTMLLinkElement>('link[data-dynamic]')) {
+        console.log(9999, link);
+        link.disabled = link.id !== styleId;
+    }
 }

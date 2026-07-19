@@ -2541,9 +2541,11 @@ function ln(e, t) {
 	r == null ? (r = document.createElement("link"), r.id = t, r.rel = "stylesheet", r.dataset.dynamic = "true", r.href = n, document.head.append(r)) : (URL.revokeObjectURL(r.href), r.href = n), r.disabled = !0;
 }
 function un() {
-	if (typeof document > "u") return;
+	if (console.log(5555), typeof document > "u") return;
+	console.log(7777);
 	let e = $.colorModeId === "dark" ? "theme-dark" : "theme-light";
-	for (let t of document.querySelectorAll("link[data-dynamic]")) t.disabled = t.id !== e;
+	console.log(8888, e);
+	for (let t of document.querySelectorAll("link[data-dynamic]")) console.log(9999, t), t.disabled = t.id !== e;
 }
 //#endregion
 export { rn as MicromarkTool };
