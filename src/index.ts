@@ -9,6 +9,11 @@ import { generateMathML } from '@/formula';
 
 // ── Types ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+interface LoadedExtension {
+    extension: Extension;
+    htmlExtension: HtmlExtension;
+}
+
 export interface RenderOptions {
     directives?: boolean;
     tables?: boolean;
@@ -20,12 +25,7 @@ const ESCAPE_MAP: Record<'&' | '<' | '>' | '"' | "'", string> = { '&': '&amp;', 
 
 // ── State ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-const codeBlockHtmlExtension = createPresenterCodeBlockHtmlExtension();
-
-interface LoadedExtension {
-    extension: Extension;
-    htmlExtension: HtmlExtension;
-}
+const codeBlockHTMLExtension = createCodeBlockHtmlExtension();
 
 const state = {
     colorModeId: 'light',
@@ -40,13 +40,14 @@ const state = {
 // ── Tools ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 export class MicromarkTool {
-    // Actions - Highligh previously rendered markdown.
+    // ── Actions ──────────────────────────────────────────────────────────────────────────────────────────────────────
+
+    // Highligh previously rendered markdown.
     async highlight(renderTo: HTMLElement, colorModeId: string): Promise<void> {
         if (typeof document === 'undefined') return;
 
         state.colorModeId = colorModeId;
         const { highlightElement } = await loadSpeedHighlight();
-        console.log(4444, colorModeId);
         applyColorMode();
 
         for (const element of renderTo.querySelectorAll<HTMLDivElement>('div[class^="shj-lang-"]')) {
@@ -61,10 +62,10 @@ export class MicromarkTool {
         }
     }
 
-    // Actions - Render markdown.
+    // Render markdown.
     async render(markdown: string, options?: RenderOptions): Promise<string> {
         const extensions: Extension[] = [];
-        const htmlExtensions: HtmlExtension[] = [codeBlockHtmlExtension];
+        const htmlExtensions: HtmlExtension[] = [codeBlockHTMLExtension];
 
         if (options?.directives ?? false) {
             state.directiveExtensionPromise ??= (async (): Promise<LoadedExtension> => {
@@ -88,17 +89,16 @@ export class MicromarkTool {
         return micromark(markdown, { allowDangerousHtml: false, allowDangerousProtocol: false, extensions, htmlExtensions });
     }
 
-    // Actions - Set color mode.
+    // Set color mode.
     setColorMode(colorModeId: string): void {
-        console.log(333, colorModeId);
         state.colorModeId = colorModeId;
         applyColorMode();
     }
 }
 
-// ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+// ── Helpers - Chart Code Block ───────────────────────────────────────────────────────────────────────────────────────
 
-function createPresenterCodeBlockHtmlExtension(): HtmlExtension {
+function createCodeBlockHtmlExtension(): HtmlExtension {
     let currentBlockData: { codeContent: string[]; lang: string; meta: string } | undefined;
     /* eslint-disable unicorn/no-this-outside-of-class --
        micromark's `Handle` type requires handlers typed as `this: CompileContext`; the CompileContext is passed via
@@ -186,7 +186,7 @@ function escapeHTML(string_: string): string {
 // ── Helpers - Note Directive ─────────────────────────────────────────────────────────────────────────────────────────
 
 /* eslint-disable unicorn/no-this-outside-of-class --
-   micromark's `Handle` type requires handlers typed as `this: CompileContext`; see createPresenterCodeBlockHtmlExtension. */
+   micromark's `Handle` type requires handlers typed as `this: CompileContext`; see createChartHtmlExtension. */
 function handleNoteDirective(this: CompileContext, directive: Directive): boolean | undefined {
     if (directive.type !== 'leafDirective') return false;
 
@@ -246,14 +246,10 @@ function injectStyle(cssText: string): void {
 }
 
 function applyColorMode(): void {
-    console.log(5555);
     if (typeof document === 'undefined') return;
 
-    console.log(7777);
     const cssText = state.colorModeId === 'dark' ? state.darkThemeCssText : state.lightThemeCssText;
-    console.log(8888, state.colorModeId, cssText !== undefined);
     if (cssText === undefined) return; // Not loaded yet; loadSpeedHighlight() will call applyColorMode() again once it is.
 
     injectStyle(cssText);
-    console.log(9999, document.querySelector('#dpuse-code-theme'));
 }
