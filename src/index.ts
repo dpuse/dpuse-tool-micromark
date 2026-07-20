@@ -67,7 +67,7 @@ export class MicromarkTool {
 
     // Render markdown.
     async render(markdown: string, options?: RenderOptions): Promise<string> {
-        console.log(111, markdown);
+        console.log(111, markdown, options);
         const extensions: Extension[] = [];
         const htmlExtensions: HtmlExtension[] = [codeBlockHTMLExtension];
 
