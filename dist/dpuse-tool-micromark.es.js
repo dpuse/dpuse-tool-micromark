@@ -2451,7 +2451,6 @@ var tn = {
 		}));
 	}
 	async render(e, t) {
-		console.log(111, e, t);
 		let n = [], r = [nn];
 		if (t?.directives ?? !1) {
 			$.directiveExtensionPromise ??= (async () => {
