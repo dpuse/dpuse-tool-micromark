@@ -1,6 +1,6 @@
 {
     "name": "@dpuse/dpuse-tool-micromark",
-    "version": "0.1.1020",
+    "version": "0.1.1021",
     "private": false,
     "description": "A library that wraps the Micromark markdown parser and Speed Highlight code highlighter.",
     "license": "MIT",
@@ -61,11 +61,11 @@
         "micromark-extension-gfm-table": "^2.1.1"
     },
     "devDependencies": {
-        "@dpuse/dpuse-development": "^0.3.690",
+        "@dpuse/dpuse-development": "^0.3.692",
         "@dpuse/eslint-config-dpuse": "^1.0.113",
         "@types/node": "^26.1.1",
         "eslint": "^10.7.0",
-        "prettier": "^3.9.5",
+        "prettier": "^3.9.6",
         "sonda": "^0.14.0",
         "typescript": "^6.0.3",
         "vite": "^8.1.5",
