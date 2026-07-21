@@ -30,10 +30,10 @@ interface BinaryNode {
  */
 export function generateMathML(expression: string): string {
     const tokens = tokenizeExpression(expression);
-    if (tokens.length === 0) return `<math display="block"></math>`;
+    if (tokens.length === 0) return `<math></math>`;
 
     const abstractSyntaxTree = parseExpression(tokens);
-    return `<div class="overscroll-x-none overflow-x-auto pb-4"><math display="block" style="text-align: left; margin: 0; math-depth: 0; font-size: 1rem;">${toMathML(abstractSyntaxTree)}</math></div>`;
+    return `<div class="overscroll-x-none overflow-x-auto pb-4"><math>${toMathML(abstractSyntaxTree)}</math></div>`;
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
