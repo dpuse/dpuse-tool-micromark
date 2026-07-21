@@ -196,9 +196,9 @@ function createCodeBlockHtmlExtension(): HtmlExtension {
 function handleNoteDirective(this: CompileContext, directive: Directive): boolean | undefined {
     if (directive.type !== 'leafDirective') return false;
 
-    this.tag('<div class="note">');
+    this.tag('<p class="note">');
     this.raw(escapeHTML(directive.label ?? ''));
-    this.tag('</div>');
+    this.tag('</p>');
 }
 /* eslint-enable unicorn/no-this-outside-of-class --
    end of the micromark `this: CompileContext` handler shim */

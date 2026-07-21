@@ -2544,7 +2544,7 @@ function on() {
 }
 function sn(e) {
 	if (e.type !== "leafDirective") return !1;
-	this.tag("<div class=\"note\">"), this.raw(an(e.label ?? "")), this.tag("</div>");
+	this.tag("<p class=\"note\">"), this.raw(an(e.label ?? "")), this.tag("</p>");
 }
 function cn() {
 	if (typeof document > "u") return;
