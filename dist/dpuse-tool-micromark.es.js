@@ -2332,7 +2332,7 @@ function Zt(e, t, n) {
 //#region src/formula.ts
 function Qt(e) {
 	let t = $t(e);
-	return t.length === 0 ? "<math display=\"block\"></math>" : `<div class="overflow-x-auto"><math display="block">${Q(en(t))}</math></div>`;
+	return t.length === 0 ? "<math display=\"block\"></math>" : `<div class="overflow-x-auto pb-4"><math display="block" class="text-left">${Q(en(t))}</math></div>`;
 }
 function $t(e) {
 	return e.match(/[A-Z][A-Z ]*|\d+(?:\.\d+)?|[=()+\-*/]/gi)?.map((e) => e.trim()) ?? [];
