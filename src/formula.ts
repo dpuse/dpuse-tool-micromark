@@ -33,7 +33,7 @@ export function generateMathML(expression: string): string {
     if (tokens.length === 0) return `<math display="block"></math>`;
 
     const abstractSyntaxTree = parseExpression(tokens);
-    return `<div class="overflow-x-auto pb-4"><math display="block" class="text-left">${toMathML(abstractSyntaxTree)}</math></div>`;
+    return `<div class="overscroll-x-none overflow-x-auto pb-4"><math display="inline">${toMathML(abstractSyntaxTree)}</math></div>`;
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────────────────────────────────────────────
